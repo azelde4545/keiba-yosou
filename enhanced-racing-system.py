@@ -623,7 +623,7 @@ class AdvancedRacingSystem:
             return max(0.3, 0.9 - (distance_diff - 400) / 3000)
     
     def _evaluate_course_aptitude(self, horse: Dict, race_info: Dict) -> float:
-        """コース適性評価"""
+        """コース適性の評価"""
         # コース名
         course = race_info.get('course', '東京')
         
@@ -1373,66 +1373,145 @@ def main():
 
 def display_results(result: dict):
     """分析結果を表示する関数"""
+    # 区切り線用の関数
+    def print_separator(char="=", length=80):
+        print_jp(char * length)
+    
+    def print_section_header(title, char="■"):
+        print_jp("\n" + char + " " + title)
+        print_jp("─" * 80)
+    
+    def print_table_row(columns, widths):
+        """列幅を指定してテーブル行を表示"""
+        row = "│ "
+        for i, col in enumerate(columns):
+            row += str(col).ljust(widths[i]) + " │ "
+        print_jp(row)
+    
+    def print_table_header(headers, widths):
+        """テーブルヘッダーを表示"""
+        # 上部の罫線
+        top_line = "┌─"
+        for w in widths:
+            top_line += "─" * w + "─┬─"
+        top_line = top_line[:-2] + "┐"
+        print_jp(top_line)
+        
+        # ヘッダー行
+        print_table_row(headers, widths)
+        
+        # ヘッダー下の罫線
+        mid_line = "├─"
+        for w in widths:
+            mid_line += "─" * w + "─┼─"
+        mid_line = mid_line[:-2] + "┤"
+        print_jp(mid_line)
+    
+    def print_table_footer(widths):
+        """テーブルフッターを表示"""
+        bottom_line = "└─"
+        for w in widths:
+            bottom_line += "─" * w + "─┴─"
+        bottom_line = bottom_line[:-2] + "┘"
+        print_jp(bottom_line)
+    
+    # タイトル表示
+    print_separator()
+    print_jp("分析結果レポート")
+    print_separator()
+    
     # レース情報の表示
     race_info = result.get('race_info', {})
-    print_jp(f"\n■ レース情報: {race_info.get('race_name', '不明')}")
-    print_jp(f"  競馬場: {race_info.get('track', '不明')} / {race_info.get('surface', '不明')} / {race_info.get('distance', '不明')}m")
-    print_jp(f"  馬場状態: {race_info.get('track_condition', '不明')}")
-    print_jp(f"  クラス: {race_info.get('grade', '不明')}")
+    print_section_header("レース情報")
+    print_jp(f"レース名: {race_info.get('race_name', '不明')}")
+    print_jp(f"競馬場: {race_info.get('track', '不明')} / {race_info.get('surface', '不明')} / {race_info.get('distance', '不明')}m")
+    print_jp(f"馬場状態: {race_info.get('track_condition', '不明')}")
+    print_jp(f"クラス: {race_info.get('grade', '不明')}")
     
     # レース特性の表示
     characteristics = race_info.get('race_characteristics', {})
     if characteristics:
-        print_jp("\n■ レース特性分析:")
-        print_jp(f"  波乱度: {characteristics.get('upset_likelihood', 0):.2f} (0-1)")
-        print_jp(f"  調子重要度: {characteristics.get('form_importance', 0):.2f} (0-1)")
-        print_jp(f"  ペース依存度: {characteristics.get('pace_dependency', 0):.2f} (0-1)")
-        print_jp(f"  クラス差: {characteristics.get('class_gap', 0):.2f} (0-1)")
+        print_section_header("レース特性分析")
+        
+        # 特性を表で表示
+        headers = ["特性", "値", "説明"]
+        widths = [15, 10, 45]
+        print_table_header(headers, widths)
+        
+        # 特性データ
+        traits = [
+            ["波乱度", f"{characteristics.get('upset_likelihood', 0):.2f}", "レースの波乱度合い (0-1)"],
+            ["調子重要度", f"{characteristics.get('form_importance', 0):.2f}", "馬の調子が結果に与える影響 (0-1)"],
+            ["ペース依存度", f"{characteristics.get('pace_dependency', 0):.2f}", "レースペースが結果に与える影響 (0-1)"],
+            ["クラス差", f"{characteristics.get('class_gap', 0):.2f}", "出走馬間のクラス差 (0-1)"]
+        ]
+        
+        for trait in traits:
+            print_table_row(trait, widths)
+        
+        print_table_footer(widths)
     
     # 馬の分類を表示
     classified = result.get('classified_horses', {})
     if classified:
-        print_jp("\n■ 馬の分類:")
+        print_section_header("馬の分類")
         
-        # 本命馬の表示
-        honmei = classified.get('honmei', [])
-        if honmei:
-            print_jp("  【本命馬】")
-            for horse in honmei:
-                print_jp(f"   {horse.get('horse_number', '?')}. {horse.get('horse_name', '不明')} " +
-                      f"(オッズ:{horse.get('odds', '-'):.1f} / スコア:{horse.get('adjusted_score', horse.get('total_score', 0)):.1f})")
+        # 分類カテゴリ
+        categories = [
+            ("本命馬", classified.get('honmei', [])),
+            ("対抗馬", classified.get('taikou', [])),
+            ("穴馬", classified.get('ana', []))
+        ]
         
-        # 対抗馬の表示
-        taikou = classified.get('taikou', [])
-        if taikou:
-            print_jp("  【対抗馬】")
-            for horse in taikou:
-                print_jp(f"   {horse.get('horse_number', '?')}. {horse.get('horse_name', '不明')} " +
-                      f"(オッズ:{horse.get('odds', '-'):.1f} / スコア:{horse.get('adjusted_score', horse.get('total_score', 0)):.1f})")
-        
-        # 穴馬の表示
-        ana = classified.get('ana', [])
-        if ana:
-            print_jp("  【穴馬】")
-            for horse in ana:
-                print_jp(f"   {horse.get('horse_number', '?')}. {horse.get('horse_name', '不明')} " +
-                      f"(オッズ:{horse.get('odds', '-'):.1f} / スコア:{horse.get('adjusted_score', horse.get('total_score', 0)):.1f})")
+        for category_name, horses in categories:
+            if horses:
+                print_jp(f"【{category_name}】")
+                
+                # テーブルヘッダー
+                headers = ["馬番", "馬名", "オッズ", "スコア"]
+                widths = [6, 20, 10, 10]
+                print_table_header(headers, widths)
+                
+                for horse in horses:
+                    horse_data = [
+                        horse.get('horse_number', '?'),
+                        horse.get('horse_name', '不明'),
+                        f"{horse.get('odds', '-'):.1f}",
+                        f"{horse.get('adjusted_score', horse.get('total_score', 0)):.1f}"
+                    ]
+                    print_table_row(horse_data, widths)
+                
+                print_table_footer(widths)
+                print_jp("")  # 空行
     
     # 予測結果を表示
     predictions = result.get('predictions', [])
     if predictions:
-        print_jp("\n■ 予測順位:")
+        print_section_header("予測順位")
+        
+        # テーブルヘッダー
+        headers = ["着順", "馬番", "馬名", "勝率"]
+        widths = [6, 6, 20, 10]
+        print_table_header(headers, widths)
+        
         for i, horse in enumerate(predictions[:5], 1):  # 上位5頭まで表示
-            print_jp(f"  {i}着: {horse.get('horse_number', '?')}. {horse.get('horse_name', '不明')} " +
-                  f"(勝率:{horse.get('win_probability', 0):.1%})")
+            horse_data = [
+                i,
+                horse.get('horse_number', '?'),
+                horse.get('horse_name', '不明'),
+                f"{horse.get('win_probability', 0):.1%}"
+            ]
+            print_table_row(horse_data, widths)
+        
+        print_table_footer(widths)
     
     # レース展開予測を表示
     race_development = result.get('race_development', {})
     if race_development:
-        print_jp("\n■ レース展開予測:")
-        development_type = race_development.get('development', '不明')
+        print_section_header("レース展開予測")
         
         # 展開タイプの日本語表示
+        development_type = race_development.get('development', '不明')
         development_japanese = {
             'fast': 'ハイペース',
             'mid': '平均ペース',
@@ -1440,40 +1519,34 @@ def display_results(result: dict):
             '不明': '不明'
         }
         
-        print_jp(f"  予測展開: {development_japanese.get(development_type, '不明')}")
-        print_jp(f"  詳細: {race_development.get('explanation', '情報なし')}")
-        print_jp(f"  上がり: {race_development.get('closing_explanation', '情報なし')}")
+        print_jp(f"予測展開: {development_japanese.get(development_type, '不明')}")
+        print_jp(f"詳細: {race_development.get('explanation', '情報なし')}")
+        print_jp(f"上がり: {race_development.get('closing_explanation', '情報なし')}")
     
     # レースパターン分析を表示
     detailed_analysis = result.get('detailed_analysis', {})
     if detailed_analysis:
         pattern_analysis = detailed_analysis.get('pattern_analysis', {})
         if pattern_analysis:
-            print_jp("\n■ レースパターン分析:")
-            print_jp(f"  パターン: {pattern_analysis.get('race_pattern', '不明')}")
-            print_jp(f"  説明: {pattern_analysis.get('pattern_explanation', '情報なし')}")
+            print_section_header("レースパターン分析")
+            print_jp(f"パターン: {pattern_analysis.get('race_pattern', '不明')}")
+            print_jp(f"説明: {pattern_analysis.get('pattern_explanation', '情報なし')}")
     
     # 各馬の詳細分析表示
     horse_evaluations = detailed_analysis.get('horse_evaluations', {})
     if horse_evaluations and result.get('horses'):
-        print_jp("\n■ 詳細分析（主要な馬）:")
+        print_section_header("詳細分析（すべての出走馬）")
         
-        # 対象馬を抽出（本命馬と対抗馬）
+        # すべての馬を表示対象とする
         target_horses = []
-        honmei = classified.get('honmei', [])
-        taikou = classified.get('taikou', [])
+        for horse in result.get('horses', []):
+            horse_number = horse.get('horse_number')
+            if horse_number is not None:
+                target_horses.append(horse_number)
         
-        if honmei:
-            target_horses.extend([h.get('horse_number') for h in honmei])
-        if taikou:
-            target_horses.extend([h.get('horse_number') for h in taikou])
-        
-        # 最大3頭まで詳細表示
+        # 表示制限なし
         displayed_count = 0
         for horse_number in target_horses:
-            if displayed_count >= 3:
-                break
-                
             if not isinstance(horse_number, (int, float)):
                 continue
                 
@@ -1485,34 +1558,62 @@ def display_results(result: dict):
             horse_info = next((h for h in result.get('horses', []) if h.get('horse_number') == horse_number), {})
             if not horse_info:
                 continue
-                
-            print_jp(f"\n  【{horse_info.get('horse_name', f'馬番{horse_number}')}の詳細】")
+            
+            # 馬の詳細情報ヘッダー
+            print_jp(f"\n{horse_info.get('horse_number', '?')}. {horse_info.get('horse_name', f'馬番{horse_number}')} の詳細分析")
+            print_jp("─" * 50)
             
             # 主要評価要素
             primary_factors = horse_eval.get('primary_factors', {})
             if primary_factors:
-                print_jp("   ◇評価要素:")
+                print_jp("◇評価要素")
                 factor_names = {
                     'base_ability': '基礎能力',
                     'competitive_profile': '競争適性',
                     'condition_factors': 'コンディション'
                 }
+                
+                # テーブルヘッダー
+                headers = ["要素", "評価値"]
+                widths = [20, 10]
+                print_table_header(headers, widths)
+                
                 for factor, value in primary_factors.items():
-                    print_jp(f"    {factor_names.get(factor, factor)}: {value:.2f}")
+                    factor_data = [
+                        factor_names.get(factor, factor),
+                        f"{value:.2f}"
+                    ]
+                    print_table_row(factor_data, widths)
+                
+                print_table_footer(widths)
             
             # 相対評価
             relative = horse_eval.get('relative', {})
             if relative:
-                print_jp("   ◇相対評価:")
+                print_jp("\n◇相対評価")
+                
+                eval_data = []
                 if 'rating' in relative:
-                    print_jp(f"    格付け: {relative.get('rating', '')}")
+                    eval_data.append(["格付け", relative.get('rating', '')])
                 if 'percentile' in relative:
-                    print_jp(f"    パーセンタイル: {relative.get('percentile', 0):.1f}")
+                    eval_data.append(["パーセンタイル", f"{relative.get('percentile', 0):.1f}"])
+                
+                if eval_data:
+                    # テーブルヘッダー
+                    headers = ["項目", "評価"]
+                    widths = [20, 10]
+                    print_table_header(headers, widths)
+                    
+                    for data in eval_data:
+                        print_table_row(data, widths)
+                    
+                    print_table_footer(widths)
             
             # レース展開との相性
             development = horse_eval.get('development', {})
             if development:
-                print_jp("   ◇展開適性:")
+                print_jp("\n◇展開適性")
+                
                 running_style_names = {
                     'front': '逃げ',
                     'stalker': '先行',
@@ -1521,14 +1622,31 @@ def display_results(result: dict):
                     'unknown': '不明'
                 }
                 style = development.get('running_style', 'unknown')
-                print_jp(f"    走法: {running_style_names.get(style, style)}")
-                print_jp(f"    展開適性スコア: {development.get('development_score', 1.0):.2f}")
-                print_jp(f"    展開補正: {development.get('development_bonus', 1.0):.2f}")
+                
+                dev_data = [
+                    ["走法", running_style_names.get(style, style)],
+                    ["展開適性スコア", f"{development.get('development_score', 1.0):.2f}"],
+                    ["展開補正", f"{development.get('development_bonus', 1.0):.2f}"]
+                ]
+                
+                # テーブルヘッダー
+                headers = ["項目", "評価"]
+                widths = [20, 10]
+                print_table_header(headers, widths)
+                
+                for data in dev_data:
+                    print_table_row(data, widths)
+                
+                print_table_footer(widths)
             
             # 勝率
-            print_jp(f"   ◇勝率: {horse_eval.get('win_probability', 0):.1%}")
+            print_jp(f"\n◇勝率: {horse_eval.get('win_probability', 0):.1%}")
             
             displayed_count += 1
+            
+            # 馬の区切り線
+            if displayed_count < len(target_horses):
+                print_jp("\n" + "─" * 80)
 
 if __name__ == "__main__":
     main()

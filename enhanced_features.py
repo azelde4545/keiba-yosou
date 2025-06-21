@@ -4,7 +4,7 @@
 古いシステムから移植した強化機能
 - 人気による補正機能（穴馬発見）
 - 合成オッズ計算機能
-- 最適購入パターン計算（予算対応版）
+- 最適購入パターン計算（予算対応版・馬券ルール準拠）
 """
 
 from typing import Dict, List, Tuple, Optional
@@ -35,11 +35,20 @@ class EnhancedFeatures:
         
         # 合成オッズ = 1 ÷ (1/オッズA + 1/オッズB + 1/オッズC ...)
         inverse_sum = sum(1 / odds for odds in odds_list)
-        return 1 / inverse_sum if inverse_sum > 0 else 0.0
+        synthetic_odds = 1 / inverse_sum if inverse_sum > 0 else 0.0
+        
+        # 下限チェック：2.0倍未満は除外
+        return synthetic_odds if synthetic_odds >= 2.0 else 0.0
+    
+    def round_to_100yen(self, amount: int) -> int:
+        """100円単位に調整（馬券の最低購入単位）"""
+        if amount < 100:
+            return 100
+        return ((amount + 50) // 100) * 100  # 四捨五入で100円単位
     
     def find_optimal_betting_patterns(self, predictions: List[Dict], 
                                      budget: int = 1000) -> List[Dict]:
-        """最適購入パターン計算（予算対応版）"""
+        """最適購入パターン計算（馬券ルール準拠版）"""
         patterns = []
         
         # 期待値プラスの馬だけを対象
@@ -48,62 +57,78 @@ class EnhancedFeatures:
         if not positive_ev_horses:
             return patterns
         
-        # 予算に応じた適切な配分計算（予算範囲内に収める）
+        # 予算に応じた適切な配分計算（100円単位）
         if budget <= 600:
-            # 小額の場合（300円・600円）はシンプルな配分
-            single_amount = min(budget, max(100, budget // 2))      # 最大予算内
-            place_amount = min(budget, max(100, budget // 3))       # 最大予算内
-            combo_amount = min(budget, max(100, budget // 2))       # 最大予算内
+            # 小額の場合（300円・600円）
+            single_raw = max(100, budget // 2)
+            place_raw = max(100, budget // 3)
+            combo_raw = max(100, budget // 2)
         elif budget <= 1500:
             # 中額の場合（1000円程度）
-            single_amount = min(budget, budget // 2)  # 予算の半分まで
-            place_amount = min(budget, budget // 3)   # 予算の1/3まで
-            combo_amount = min(budget, budget // 2)   # 予算の半分まで
+            single_raw = budget // 2
+            place_raw = budget // 3
+            combo_raw = budget // 2
         else:
             # 高額の場合
-            single_amount = min(budget * 0.4, budget // 2)
-            place_amount = min(budget * 0.3, budget // 3)
-            combo_amount = min(budget * 0.5, budget // 2)
+            single_raw = min(budget * 0.4, budget // 2)
+            place_raw = min(budget * 0.3, budget // 3)
+            combo_raw = min(budget * 0.5, budget // 2)
+        
+        # 100円単位に調整
+        single_amount = self.round_to_100yen(single_raw)
+        place_amount = self.round_to_100yen(place_raw)
+        combo_amount = self.round_to_100yen(combo_raw)
+        
+        # 予算オーバーチェック
+        single_amount = min(single_amount, budget)
+        place_amount = min(place_amount, budget)
+        combo_amount = min(combo_amount, budget)
         
         # 単勝パターン
         for horse in positive_ev_horses[:3]:  # 上位3頭
-            roi = horse['expected_value']
-            patterns.append({
-                'type': '単勝',
-                'horses': [horse['horse_name']],
-                'odds': horse['odds'],
-                'expected_roi': roi,
-                'recommended_amount': int(single_amount)
-            })
+            if horse['odds'] >= 2.0:  # オッズ下限チェック
+                roi = horse['expected_value']
+                patterns.append({
+                    'type': '単勝',
+                    'horses': [horse['horse_name']],
+                    'odds': horse['odds'],
+                    'expected_roi': roi,
+                    'recommended_amount': single_amount
+                })
         
         # 複勝パターン
         for horse in positive_ev_horses[:2]:
-            place_prob = horse.get('actual_stats', {}).get('place_rate', 0.3)
-            roi = place_prob * (horse['odds'] * 0.2) - 1  # 複勝は単勝の約20%
-            if roi > 0:
-                patterns.append({
-                    'type': '複勝',
-                    'horses': [horse['horse_name']],
-                    'odds': horse['odds'] * 0.2,
-                    'expected_roi': roi,
-                    'recommended_amount': int(place_amount)
-                })
+            place_odds = horse['odds'] * 0.2  # 複勝は単勝の約20%
+            if place_odds >= 2.0:  # オッズ下限チェック
+                place_prob = horse.get('actual_stats', {}).get('place_rate', 0.3)
+                roi = place_prob * place_odds - 1
+                if roi > 0:
+                    patterns.append({
+                        'type': '複勝',
+                        'horses': [horse['horse_name']],
+                        'odds': place_odds,
+                        'expected_roi': roi,
+                        'recommended_amount': place_amount
+                    })
         
         # 馬連パターン（上位2頭の組み合わせ）
         if len(positive_ev_horses) >= 2:
             horse1, horse2 = positive_ev_horses[0], positive_ev_horses[1]
             combined_odds = self.calculate_synthetic_odds([horse1['odds'], horse2['odds']])
-            combined_prob = horse1['win_probability'] * horse2['win_probability'] * 2  # 順序考慮
-            roi = combined_prob * combined_odds - 1
             
-            if roi > 0:
-                patterns.append({
-                    'type': '馬連',
-                    'horses': [horse1['horse_name'], horse2['horse_name']],
-                    'odds': combined_odds,
-                    'expected_roi': roi,
-                    'recommended_amount': int(combo_amount)
-                })
+            # 合成オッズが有効（2.0以上）かチェック
+            if combined_odds >= 3.0:  # 馬連は3.0以上を推奨
+                combined_prob = horse1['win_probability'] * horse2['win_probability'] * 2  # 順序考慮
+                roi = combined_prob * combined_odds - 1
+                
+                if roi > 0:
+                    patterns.append({
+                        'type': '馬連',
+                        'horses': [horse1['horse_name'], horse2['horse_name']],
+                        'odds': combined_odds,
+                        'expected_roi': roi,
+                        'recommended_amount': combo_amount
+                    })
         
         # ROI順でソート
         patterns.sort(key=lambda x: x['expected_roi'], reverse=True)
@@ -212,9 +237,20 @@ def get_user_budget():
         return [300, 600]
 
 
+def print_betting_guide():
+    """馬券購入ガイド（簡潔版）"""
+    print("\n📋 馬券購入ガイド（簡潔版）")
+    print("・最低購入金額：100円（100円単位のみ）")
+    print("・単勝：1着を当てる　複勝：3着以内を当てる")
+    print("・馬連：1-2着の組み合わせ（順序不問）")
+    print("・馬単：1-2着を順序通り　ワイド：3着以内の2頭")
+    print("・BOX買い：選択馬の全組み合わせ")
+    print("・流し買い：軸馬と相手馬の組み合わせ")
+
+
 def test_enhanced_features():
-    """強化機能のテスト（予算対応版）"""
-    print("=== 強化機能テスト（予算対応版） ===")
+    """強化機能のテスト（馬券ルール準拠版）"""
+    print("=== 強化機能テスト（馬券ルール準拠版） ===")
     
     features = EnhancedFeatures()
     
@@ -234,16 +270,25 @@ def test_enhanced_features():
     combined_odds = features.calculate_synthetic_odds([12.0, 2.5])
     print(f"合成オッズ: {combined_odds:.2f}倍")
     
+    # 100円単位調整テスト
+    test_amounts = [150, 250, 333, 166]
+    print(f"\n100円単位調整テスト:")
+    for amount in test_amounts:
+        adjusted = features.round_to_100yen(amount)
+        print(f"  {amount}円 → {adjusted}円")
+    
     # 複数予算でのテスト
     test_budgets = [300, 600, 1000]
     for budget in test_budgets:
         print(f"\n=== 予算{budget}円での最適購入パターン ===")
         patterns = features.find_optimal_betting_patterns(sample_predictions, budget)
-        print("※各券種から1つを選んで購入")
+        print("※各券種から1つを選んで購入（100円単位）")
         for i, pattern in enumerate(patterns, 1):
-            print(f"{i}. {pattern['type']}: {pattern['horses']} ({pattern['recommended_amount']}円, ROI: {pattern['expected_roi']:+.3f})")
+            horses_str = "×".join(pattern['horses'])
+            print(f"{i}. {pattern['type']}: {horses_str} ({pattern['recommended_amount']}円, ROI: {pattern['expected_roi']:+.3f})")
     
     print("\n✅ 強化機能テスト完了")
+    print_betting_guide()
 
 
 if __name__ == "__main__":

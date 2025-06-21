@@ -6,6 +6,7 @@
 - Obsidianテンプレートはファイルを読み込み
 - 文字化けを完全に回避
 - ユーザー予算に応じた最適購入パターン計算
+- 詳細な選択馬情報表示
 """
 
 import json
@@ -111,10 +112,26 @@ def main_file_output():
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(output_data, f, ensure_ascii=False, indent=2)
         
+        # 詳細な結果表示
+        premium_horses = [p['horse_name'] for p in output_data['predictions'] if p.get('strategy_zone') == 'プレミアム']
+        positive_ev_horses = [p['horse_name'] for p in output_data['predictions'] if p.get('expected_value', 0) > 0]
+        
         print(f"✅ 競馬予想完了: {output_file} に保存")
         print(f"📊 分析対象: {len(output_data['predictions'])}頭")
-        print(f"⭐ プレミアムゾーン: {output_data['summary'].get('premium_zone_horses', 0)}頭")
-        print(f"💰 期待値プラス: {output_data['summary'].get('positive_expected_value', 0)}頭")
+        
+        # プレミアムゾーンの詳細表示
+        if premium_horses:
+            premium_list = "、".join(premium_horses)
+            print(f"⭐ プレミアムゾーン: {len(premium_horses)}頭 ({premium_list})")
+        else:
+            print(f"⭐ プレミアムゾーン: なし")
+        
+        # 期待値プラスの詳細表示
+        if positive_ev_horses:
+            positive_list = "、".join(positive_ev_horses)
+            print(f"💰 期待値プラス: {len(positive_ev_horses)}頭 ({positive_list})")
+        else:
+            print(f"💰 期待値プラス: なし")
         
         # 予算別購入パターン表示
         print(f"\\n🎯 予算別最適購入パターン:")
@@ -123,9 +140,16 @@ def main_file_output():
             if patterns:
                 for i, pattern in enumerate(patterns[:3], 1):  # 上位3パターン
                     horses_str = "×".join(pattern['horses'])
-                    print(f"  {i}. {pattern['type']}: {horses_str} ({pattern['recommended_amount']}円)")
+                    roi_percent = pattern['expected_roi'] * 100
+                    print(f"  {i}. {pattern['type']}: {horses_str} ({pattern['recommended_amount']}円, ROI: {roi_percent:+.1f}%)")
             else:
                 print("  推奨パターンなし")
+        
+        # 上位馬の詳細情報
+        print(f"\\n🏇 上位予想:")
+        for i, pred in enumerate(output_data['predictions'][:5], 1):
+            zone_mark = "⭐" if pred.get('strategy_zone') == 'プレミアム' else "📈" if pred.get('expected_value', 0) > 0 else "📊"
+            print(f"  {i}位 {zone_mark} {pred['horse_name']} (#{pred['horse_number']}, {pred['odds']:.1f}倍, {pred['jockey']})")
         
     except Exception as e:
         # エラー時もファイル出力

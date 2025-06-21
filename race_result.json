@@ -1,0 +1,128 @@
+{
+  "status": "success",
+  "timestamp": "2025-06-21 21:48:35",
+  "race_info": {
+    "name": "古システム機能統合テスト特別",
+    "track": "東京",
+    "surface": "芝",
+    "distance": 1600,
+    "condition": "良"
+  },
+  "predictions": [
+    {
+      "rank": 1,
+      "horse_name": "本命馬",
+      "horse_number": 2,
+      "jockey": "武豊",
+      "odds": 2.5,
+      "total_score": 88.0,
+      "expected_value": -0.261,
+      "strategy_zone": "caution",
+      "win_probability": 0.352,
+      "enhanced_features": {
+        "popularity_correction": true,
+        "synthetic_odds_ready": true,
+        "optimal_betting_ready": true
+      },
+      "actual_stats": {
+        "win_rate": 0.31,
+        "place_rate": 0.52,
+        "show_rate": 0.66,
+        "recovery_rate": 76
+      }
+    },
+    {
+      "rank": 2,
+      "horse_name": "穴馬候補",
+      "horse_number": 3,
+      "jockey": "M.デムーロ",
+      "odds": 17.0,
+      "total_score": 87.4,
+      "expected_value": 2.993,
+      "strategy_zone": "premium",
+      "win_probability": 0.35,
+      "enhanced_features": {
+        "popularity_correction": true,
+        "synthetic_odds_ready": true,
+        "optimal_betting_ready": true
+      },
+      "actual_stats": {
+        "win_rate": 0.05,
+        "place_rate": 0.12,
+        "show_rate": 0.2,
+        "recovery_rate": 87
+      }
+    },
+    {
+      "rank": 3,
+      "horse_name": "人気補正馬",
+      "horse_number": 1,
+      "jockey": "C.ルメール",
+      "odds": 13.5,
+      "total_score": 86.6,
+      "expected_value": 2.277,
+      "strategy_zone": "premium",
+      "win_probability": 0.346,
+      "enhanced_features": {
+        "popularity_correction": true,
+        "synthetic_odds_ready": true,
+        "optimal_betting_ready": true
+      },
+      "actual_stats": {
+        "win_rate": 0.07,
+        "place_rate": 0.16,
+        "show_rate": 0.26,
+        "recovery_rate": 86
+      }
+    }
+  ],
+  "betting_patterns": [
+    {
+      "type": "単勝",
+      "horses": [
+        "穴馬候補"
+      ],
+      "odds": 17.0,
+      "expected_roi": 2.993,
+      "recommended_amount": 300.0
+    },
+    {
+      "type": "単勝",
+      "horses": [
+        "人気補正馬"
+      ],
+      "odds": 13.5,
+      "expected_roi": 2.277,
+      "recommended_amount": 300.0
+    },
+    {
+      "type": "馬連",
+      "horses": [
+        "穴馬候補",
+        "人気補正馬"
+      ],
+      "odds": 7.524590163934426,
+      "expected_roi": 0.8224557377049178,
+      "recommended_amount": 250.0
+    }
+  ],
+  "system_info": {
+    "method": "Traditional System (70%) + Random Forest (30%)",
+    "performance": "+70% ROI, +15-25% 精度, 穴馬発見率向上",
+    "features": [
+      "人気による補正機能（穴馬発見）",
+      "合成オッズ計算機能",
+      "最適購入パターン計算",
+      "Random Forest統合 (+15-25% 精度)"
+    ]
+  },
+  "summary": {
+    "total_horses": 3,
+    "premium_zone_horses": 2,
+    "avoid_zone_horses": 0,
+    "positive_expected_value": 2,
+    "recommended_focus": "10-20倍ゾーン"
+  },
+  "encoding_safe": true,
+  "file_output_method": true
+}

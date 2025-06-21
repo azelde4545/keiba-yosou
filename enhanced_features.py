@@ -4,7 +4,7 @@
 古いシステムから移植した強化機能
 - 人気による補正機能（穴馬発見）
 - 合成オッズ計算機能
-- 最適購入パターン計算
+- 最適購入パターン計算（予算対応版）
 """
 
 from typing import Dict, List, Tuple, Optional
@@ -39,7 +39,7 @@ class EnhancedFeatures:
     
     def find_optimal_betting_patterns(self, predictions: List[Dict], 
                                      budget: int = 1000) -> List[Dict]:
-        """最適購入パターン計算（ROI最大化）"""
+        """最適購入パターン計算（予算対応版）"""
         patterns = []
         
         # 期待値プラスの馬だけを対象
@@ -47,6 +47,23 @@ class EnhancedFeatures:
         
         if not positive_ev_horses:
             return patterns
+        
+        # 予算に応じた適切な配分計算
+        if budget <= 600:
+            # 小額の場合（300円・600円）はシンプルな配分
+            single_amount = max(100, budget // 2)      # 半分を単勝（最低100円）
+            place_amount = max(100, budget // 3)       # 1/3を複勝（最低100円）
+            combo_amount = max(100, budget // 2)       # 半分を馬連（最低100円）
+        elif budget <= 1500:
+            # 中額の場合（1000円程度）
+            single_amount = budget // 3
+            place_amount = budget // 4
+            combo_amount = budget // 3
+        else:
+            # 高額の場合
+            single_amount = min(budget * 0.3, budget // 3)
+            place_amount = min(budget * 0.2, budget // 4)
+            combo_amount = min(budget * 0.25, budget // 3)
         
         # 単勝パターン
         for horse in positive_ev_horses[:3]:  # 上位3頭
@@ -56,7 +73,7 @@ class EnhancedFeatures:
                 'horses': [horse['horse_name']],
                 'odds': horse['odds'],
                 'expected_roi': roi,
-                'recommended_amount': min(budget * 0.3, 300)
+                'recommended_amount': single_amount
             })
         
         # 複勝パターン
@@ -69,7 +86,7 @@ class EnhancedFeatures:
                     'horses': [horse['horse_name']],
                     'odds': horse['odds'] * 0.2,
                     'expected_roi': roi,
-                    'recommended_amount': min(budget * 0.2, 200)
+                    'recommended_amount': place_amount
                 })
         
         # 馬連パターン（上位2頭の組み合わせ）
@@ -85,7 +102,7 @@ class EnhancedFeatures:
                     'horses': [horse1['horse_name'], horse2['horse_name']],
                     'odds': combined_odds,
                     'expected_roi': roi,
-                    'recommended_amount': min(budget * 0.25, 250)
+                    'recommended_amount': combo_amount
                 })
         
         # ROI順でソート
@@ -170,9 +187,34 @@ class EnhancedFeatures:
         }
 
 
+def get_user_budget():
+    """ユーザー予算取得（安全網付き）"""
+    print("=== 競馬予想システム ===")
+    
+    try:
+        user_input = input("今日の予算を入力してください（円、Enterで自動計算）: ").strip()
+        
+        # 空入力の場合は自動で両方計算
+        if not user_input:
+            print("自動で300円・600円の2パターンで計算します。")
+            return [300, 600]
+        
+        budget = int(user_input)
+        if budget < 100:
+            print("予算が少ないので、300円・600円で計算します。")
+            return [300, 600]
+        
+        print(f"予算{budget:,}円で分析を開始します。")
+        return [budget]
+        
+    except:
+        print("自動で300円・600円の2パターンで計算します。")
+        return [300, 600]
+
+
 def test_enhanced_features():
-    """強化機能のテスト"""
-    print("=== 強化機能テスト ===")
+    """強化機能のテスト（予算対応版）"""
+    print("=== 強化機能テスト（予算対応版） ===")
     
     features = EnhancedFeatures()
     
@@ -192,23 +234,13 @@ def test_enhanced_features():
     combined_odds = features.calculate_synthetic_odds([12.0, 2.5])
     print(f"合成オッズ: {combined_odds:.2f}倍")
     
-    # 最適購入パターン
-    patterns = features.find_optimal_betting_patterns(sample_predictions, 1000)
-    print(f"\n最適購入パターン:")
-    for i, pattern in enumerate(patterns, 1):
-        print(f"{i}. {pattern['type']}: {pattern['horses']} (ROI: {pattern['expected_roi']:+.3f})")
-    
-    # 穴馬分析
-    dark_horse_data = {
-        'odds': 15.0,
-        'recent_results': [
-            {'popularity': 10, 'result': 3, 'distance': 1600},
-            {'popularity': 8, 'result': 5, 'distance': 1400}
-        ]
-    }
-    
-    dark_horse_analysis = features.analyze_dark_horse_potential(dark_horse_data, {'distance': 1600})
-    print(f"\n穴馬分析: {dark_horse_analysis}")
+    # 複数予算でのテスト
+    test_budgets = [300, 600, 1000]
+    for budget in test_budgets:
+        print(f"\n=== 予算{budget}円での最適購入パターン ===")
+        patterns = features.find_optimal_betting_patterns(sample_predictions, budget)
+        for i, pattern in enumerate(patterns, 1):
+            print(f"{i}. {pattern['type']}: {pattern['horses']} ({pattern['recommended_amount']}円, ROI: {pattern['expected_roi']:+.3f})")
     
     print("\n✅ 強化機能テスト完了")
 

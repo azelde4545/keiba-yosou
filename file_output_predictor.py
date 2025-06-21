@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ファイル出力版競馬予想システム
+ファイル出力版競馬予想システム（予算対応版）
 - 結果をJSONファイルに保存
 - Obsidianテンプレートはファイルを読み込み
 - 文字化けを完全に回避
+- ユーザー予算に応じた最適購入パターン計算
 """
 
 import json
@@ -29,6 +30,7 @@ setup_windows_encoding()
 # メインシステムをインポート
 try:
     from ultimate_integrated_predictor import UltimateIntegratedPredictor, create_enhanced_test_race
+    from enhanced_features import EnhancedFeatures, get_user_budget
 except ImportError as e:
     # エラーをファイルに出力
     error_data = {
@@ -42,16 +44,26 @@ except ImportError as e:
     sys.exit(1)
 
 def main_file_output():
-    """ファイル出力メイン処理"""
+    """ファイル出力メイン処理（予算対応版）"""
     output_file = 'race_result.json'
     
     try:
-        print("競馬予想システム実行中...")
+        # 予算取得（300円・600円の安全網付き）
+        budgets = get_user_budget()
+        
+        print("\\n競馬予想システム実行中...")
         
         # システム初期化・実行
         predictor = UltimateIntegratedPredictor()
+        enhanced_features = EnhancedFeatures()
         test_race = create_enhanced_test_race()
         result = predictor.predict_race_with_enhanced_analysis(test_race)
+        
+        # 各予算での最適購入パターン計算
+        all_betting_patterns = {}
+        for budget in budgets:
+            patterns = enhanced_features.find_optimal_betting_patterns(result['predictions'], budget)
+            all_betting_patterns[f"{budget}円"] = patterns
         
         # 結果データ構造化
         output_data = {
@@ -65,11 +77,13 @@ def main_file_output():
                 "condition": test_race.get('condition', '')
             },
             "predictions": [],
-            "betting_patterns": result.get('optimal_betting_patterns', []),
+            "budgets": budgets,
+            "betting_patterns_by_budget": all_betting_patterns,
             "system_info": {
                 "method": result['system_info']['ensemble_method'],
                 "performance": result['system_info']['expected_performance'],
-                "features": result['system_info']['enhanced_features']
+                "features": result['system_info']['enhanced_features'],
+                "budget_feature": "予算対応版"
             },
             "summary": result.get('analysis_summary', {}),
             "encoding_safe": True,
@@ -101,6 +115,17 @@ def main_file_output():
         print(f"📊 分析対象: {len(output_data['predictions'])}頭")
         print(f"⭐ プレミアムゾーン: {output_data['summary'].get('premium_zone_horses', 0)}頭")
         print(f"💰 期待値プラス: {output_data['summary'].get('positive_expected_value', 0)}頭")
+        
+        # 予算別購入パターン表示
+        print(f"\\n🎯 予算別最適購入パターン:")
+        for budget_str, patterns in all_betting_patterns.items():
+            print(f"\\n【{budget_str}】")
+            if patterns:
+                for i, pattern in enumerate(patterns[:3], 1):  # 上位3パターン
+                    horses_str = "×".join(pattern['horses'])
+                    print(f"  {i}. {pattern['type']}: {horses_str} ({pattern['recommended_amount']}円)")
+            else:
+                print("  推奨パターンなし")
         
     except Exception as e:
         # エラー時もファイル出力

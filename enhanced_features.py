@@ -48,22 +48,22 @@ class EnhancedFeatures:
         if not positive_ev_horses:
             return patterns
         
-        # 予算に応じた適切な配分計算
+        # 予算に応じた適切な配分計算（予算範囲内に収める）
         if budget <= 600:
             # 小額の場合（300円・600円）はシンプルな配分
-            single_amount = max(100, budget // 2)      # 半分を単勝（最低100円）
-            place_amount = max(100, budget // 3)       # 1/3を複勝（最低100円）
-            combo_amount = max(100, budget // 2)       # 半分を馬連（最低100円）
+            single_amount = min(budget, max(100, budget // 2))      # 最大予算内
+            place_amount = min(budget, max(100, budget // 3))       # 最大予算内
+            combo_amount = min(budget, max(100, budget // 2))       # 最大予算内
         elif budget <= 1500:
             # 中額の場合（1000円程度）
-            single_amount = budget // 3
-            place_amount = budget // 4
-            combo_amount = budget // 3
+            single_amount = min(budget, budget // 2)  # 予算の半分まで
+            place_amount = min(budget, budget // 3)   # 予算の1/3まで
+            combo_amount = min(budget, budget // 2)   # 予算の半分まで
         else:
             # 高額の場合
-            single_amount = min(budget * 0.3, budget // 3)
-            place_amount = min(budget * 0.2, budget // 4)
-            combo_amount = min(budget * 0.25, budget // 3)
+            single_amount = min(budget * 0.4, budget // 2)
+            place_amount = min(budget * 0.3, budget // 3)
+            combo_amount = min(budget * 0.5, budget // 2)
         
         # 単勝パターン
         for horse in positive_ev_horses[:3]:  # 上位3頭
@@ -73,7 +73,7 @@ class EnhancedFeatures:
                 'horses': [horse['horse_name']],
                 'odds': horse['odds'],
                 'expected_roi': roi,
-                'recommended_amount': single_amount
+                'recommended_amount': int(single_amount)
             })
         
         # 複勝パターン
@@ -86,7 +86,7 @@ class EnhancedFeatures:
                     'horses': [horse['horse_name']],
                     'odds': horse['odds'] * 0.2,
                     'expected_roi': roi,
-                    'recommended_amount': place_amount
+                    'recommended_amount': int(place_amount)
                 })
         
         # 馬連パターン（上位2頭の組み合わせ）
@@ -102,7 +102,7 @@ class EnhancedFeatures:
                     'horses': [horse1['horse_name'], horse2['horse_name']],
                     'odds': combined_odds,
                     'expected_roi': roi,
-                    'recommended_amount': combo_amount
+                    'recommended_amount': int(combo_amount)
                 })
         
         # ROI順でソート
@@ -239,6 +239,7 @@ def test_enhanced_features():
     for budget in test_budgets:
         print(f"\n=== 予算{budget}円での最適購入パターン ===")
         patterns = features.find_optimal_betting_patterns(sample_predictions, budget)
+        print("※各券種から1つを選んで購入")
         for i, pattern in enumerate(patterns, 1):
             print(f"{i}. {pattern['type']}: {pattern['horses']} ({pattern['recommended_amount']}円, ROI: {pattern['expected_roi']:+.3f})")
     

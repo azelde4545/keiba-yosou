@@ -16,16 +16,12 @@ Random Forest機械学習と古システム統合による高精度競馬予想�
 - `ultimate_integrated_predictor.py` - 最新統合システム（Random Forest + 人気補正）
 - `file_output_predictor.py` - 文字化け対策版（推奨）
 - `enhanced_features.py` - 強化機能（単体テスト用）
+- `integrated_odds_predictor.py` - Random Forest統合システム
 
 ### 📊 データ・設定
 - `simple_bloodline.json` - 血統データベース
 - `race_result.json` - 最新実行結果
-
-### 📂 整理済みフォルダ
-- `archive/` - 古いシステムファイル
-- `tests/` - テストファイル
-- `development/` - 開発・試行錯誤ファイル
-- `data/` - データファイル
+- `__init__.py` - Pythonパッケージ初期化ファイル
 
 ## 🚀 使用方法
 
@@ -37,6 +33,11 @@ python file_output_predictor.py
 ### 統合システム実行
 ```bash
 python ultimate_integrated_predictor.py
+```
+
+### Random Forest版実行
+```bash
+python integrated_odds_predictor.py
 ```
 
 ### 強化機能テスト
@@ -103,32 +104,15 @@ python enhanced_features.py
 - ⚠️ 注意（1.5-2.9倍）: 過剰人気注意
 - ❌ 回避（50倍超）: 基本除外
 
-## 🎲 Obsidian連携
-
-### テンプレート
-- `完全版競馬予想テンプレート.md` - 推奨（文字化け対策済み）
-- `文字化け対策競馬予想テンプレート.md` - 代替版
-
-### ワークフロー
-- `新・競馬予想統合ワークフロー.md` - 最新システム対応
-- `競馬予想詳細チェックリスト.md` - 作業漏れ防止
-
 ## 🛡️ エラー対処
 
 ### 文字化け発生時
 1. `file_output_predictor.py` 使用（推奨）
 2. 結果は `race_result.json` に安全保存
-3. Obsidianテンプレートで自動読み込み
 
 ### Python実行エラー
 1. 依存ライブラリ確認: `numpy`, `json`, `datetime`
 2. ファイルパス確認
-3. `development/` の簡易版でテスト
-
-### MCPツール連携エラー
-1. keiba-sqlite: データベース再接続
-2. web_search: ネット接続確認
-3. obsidian: テンプレート手動実行
 
 ## 📈 システム統計
 

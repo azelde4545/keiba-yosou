@@ -5,6 +5,7 @@
 - 人気による補正機能（穴馬発見）
 - 合成オッズ計算機能
 - 最適購入パターン計算（予算対応版・馬券ルール準拠）
+- 選択理由コメント生成
 """
 
 from typing import Dict, List, Tuple, Optional
@@ -45,6 +46,28 @@ class EnhancedFeatures:
         if amount < 100:
             return 100
         return ((amount + 50) // 100) * 100  # 四捨五入で100円単位
+    
+    def generate_horse_comment(self, horse_data: Dict) -> str:
+        """選択理由コメント生成（短縮版）"""
+        odds = horse_data.get('odds', 0.0)
+        expected_value = horse_data.get('expected_value', 0.0)
+        total_score = horse_data.get('total_score', 0.0)
+        
+        # シンプルな条件分岐で理由生成
+        if expected_value > 0.4:
+            return "期待値抜群"
+        elif expected_value > 0.2 and odds > 8.0:
+            return "穴馬候補・旨味あり"
+        elif odds <= 3.0 and total_score > 80:
+            return "実力上位・安定感"
+        elif odds > 10.0 and expected_value > 0.1:
+            return "大穴だけど面白い"
+        elif total_score > 85:
+            return "総合力高い"
+        elif expected_value > 0.0:
+            return "期待値プラス"
+        else:
+            return "データ重視"
     
     def find_optimal_betting_patterns(self, predictions: List[Dict], 
                                      budget: int = 1000) -> List[Dict]:
@@ -258,24 +281,25 @@ def test_enhanced_features():
     sample_predictions = [
         {
             'horse_name': '穴馬候補', 'odds': 12.0, 'expected_value': 0.5,
-            'win_probability': 0.15, 'actual_stats': {'place_rate': 0.35}
+            'win_probability': 0.15, 'actual_stats': {'place_rate': 0.35},
+            'total_score': 75.0
         },
         {
             'horse_name': '本命馬', 'odds': 2.5, 'expected_value': 0.2,
-            'win_probability': 0.35, 'actual_stats': {'place_rate': 0.65}
+            'win_probability': 0.35, 'actual_stats': {'place_rate': 0.65},
+            'total_score': 88.0
         }
     ]
     
+    # コメント生成テスト
+    print(f"\nコメント生成テスト:")
+    for horse in sample_predictions:
+        comment = features.generate_horse_comment(horse)
+        print(f"  {horse['horse_name']}: {comment}")
+    
     # 合成オッズテスト
     combined_odds = features.calculate_synthetic_odds([12.0, 2.5])
-    print(f"合成オッズ: {combined_odds:.2f}倍")
-    
-    # 100円単位調整テスト
-    test_amounts = [150, 250, 333, 166]
-    print(f"\n100円単位調整テスト:")
-    for amount in test_amounts:
-        adjusted = features.round_to_100yen(amount)
-        print(f"  {amount}円 → {adjusted}円")
+    print(f"\n合成オッズ: {combined_odds:.2f}倍")
     
     # 複数予算でのテスト
     test_budgets = [300, 600, 1000]
@@ -285,7 +309,8 @@ def test_enhanced_features():
         print("※各券種から1つを選んで購入（100円単位）")
         for i, pattern in enumerate(patterns, 1):
             horses_str = "×".join(pattern['horses'])
-            print(f"{i}. {pattern['type']}: {horses_str} ({pattern['recommended_amount']}円, ROI: {pattern['expected_roi']:+.3f})")
+            roi_percent = pattern['expected_roi'] * 100
+            print(f"{i}. {pattern['type']}: {horses_str} ({pattern['recommended_amount']}円, ROI: {roi_percent:+.1f}%)")
     
     print("\n✅ 強化機能テスト完了")
     print_betting_guide()

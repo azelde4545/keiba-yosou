@@ -5,7 +5,7 @@
 - 人気による補正機能（穴馬発見）
 - 合成オッズ計算機能
 - 最適購入パターン計算（予算対応版・馬券ルール準拠）
-- 選択理由コメント生成
+- 選択理由コメント生成（修正版）
 """
 
 from typing import Dict, List, Tuple, Optional
@@ -48,22 +48,22 @@ class EnhancedFeatures:
         return ((amount + 50) // 100) * 100  # 四捨五入で100円単位
     
     def generate_horse_comment(self, horse_data: Dict) -> str:
-        """選択理由コメント生成（短縮版）"""
+        """選択理由コメント生成（修正版）"""
         odds = horse_data.get('odds', 0.0)
         expected_value = horse_data.get('expected_value', 0.0)
         total_score = horse_data.get('total_score', 0.0)
         
-        # シンプルな条件分岐で理由生成
+        # 条件の順序を調整（総合力を期待値より前に）
         if expected_value > 0.4:
             return "期待値抜群"
         elif expected_value > 0.2 and odds > 8.0:
             return "穴馬候補・旨味あり"
+        elif total_score > 85:
+            return "総合力高い"
         elif odds <= 3.0 and total_score > 80:
             return "実力上位・安定感"
         elif odds > 10.0 and expected_value > 0.1:
             return "大穴だけど面白い"
-        elif total_score > 85:
-            return "総合力高い"
         elif expected_value > 0.0:
             return "期待値プラス"
         else:

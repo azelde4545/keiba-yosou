@@ -7,6 +7,7 @@
 - 文字化けを完全に回避
 - ユーザー予算に応じた最適購入パターン計算
 - 詳細な選択馬情報表示
+- 選択理由コメント付き
 """
 
 import json
@@ -145,11 +146,19 @@ def main_file_output():
             else:
                 print("  推奨パターンなし")
         
-        # 上位馬の詳細情報
+        # 上位馬の詳細情報（コメント付き）
         print(f"\\n🏇 上位予想:")
         for i, pred in enumerate(output_data['predictions'][:5], 1):
             zone_mark = "⭐" if pred.get('strategy_zone') == 'プレミアム' else "📈" if pred.get('expected_value', 0) > 0 else "📊"
+            
+            # コメント生成
+            comment = enhanced_features.generate_horse_comment(pred)
+            
+            # 期待値とROIのパーセンテージ表示
+            ev_percent = pred.get('expected_value', 0) * 100
+            
             print(f"  {i}位 {zone_mark} {pred['horse_name']} (#{pred['horse_number']}, {pred['odds']:.1f}倍, {pred['jockey']})")
+            print(f"     → {comment} (期待値: {ev_percent:+.1f}%)")
         
     except Exception as e:
         # エラー時もファイル出力

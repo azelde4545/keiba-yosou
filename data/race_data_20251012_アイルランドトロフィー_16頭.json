@@ -1,0 +1,214 @@
+{
+  "race_info": {
+    "name": "アイルランドトロフィー",
+    "date": "2025-10-12",
+    "venue": "東京",
+    "race_number": 11,
+    "distance": 1800,
+    "course_type": "芝・左",
+    "grade": "GII",
+    "conditions": "3歳以上オープン（国際）牝（指定）別定"
+  },
+  "horses": [
+    {
+      "number": 1,
+      "name": "アドマイヤマツリ",
+      "jockey": "武豊",
+      "odds": 5.1,
+      "weight": 470,
+      "recent_races": [
+        {"date": "2025-05-18", "venue": "東京", "race": "ヴィクトリア", "distance": 1600, "surface": "芝", "finish": 7, "runners": 17},
+        {"date": "2025-04-20", "venue": "福島", "race": "福島牝馬S", "distance": 1800, "surface": "芝", "finish": 1, "runners": 16},
+        {"date": "2025-03-23", "venue": "中山", "race": "スピカS", "distance": 1800, "surface": "芝", "finish": 1, "runners": 16}
+      ]
+    },
+    {
+      "number": 2,
+      "name": "アンゴラブラック",
+      "jockey": "戸崎圭太",
+      "odds": 11.9,
+      "weight": 470,
+      "recent_races": [
+        {"date": "2025-06-28", "venue": "福島", "race": "バーデンBC", "distance": 2000, "surface": "芝", "finish": 1, "runners": 16},
+        {"date": "2025-04-20", "venue": "中山", "race": "野島崎特別", "distance": 2000, "surface": "芝", "finish": 1, "runners": 12},
+        {"date": "2025-02-23", "venue": "東京", "race": "1勝クラス", "distance": 1800, "surface": "芝", "finish": 1, "runners": 15}
+      ]
+    },
+    {
+      "number": 3,
+      "name": "キャットファイト",
+      "jockey": "大野拓弥",
+      "odds": 56.3,
+      "weight": 480,
+      "recent_races": [
+        {"date": "2024-09-08", "venue": "中山", "race": "京成杯AH", "distance": 1600, "surface": "芝", "finish": 9, "runners": 16},
+        {"date": "2024-04-07", "venue": "阪神", "race": "桜花賞", "distance": 1600, "surface": "芝", "finish": 18, "runners": 18},
+        {"date": "2024-03-10", "venue": "中山", "race": "アネモネS", "distance": 1600, "surface": "芝", "finish": 1, "runners": 12},
+        {"date": "2024-01-07", "venue": "中山", "race": "フェアリーS", "distance": 1600, "surface": "芝", "finish": 6, "runners": 14}
+      ]
+    },
+    {
+      "number": 4,
+      "name": "フィールシンパシー",
+      "jockey": "横山琉人",
+      "odds": 117.2,
+      "weight": 464,
+      "recent_races": [
+        {"date": "2025-08-03", "venue": "札幌", "race": "クイーンS", "distance": 1800, "surface": "芝", "finish": 14, "runners": 14},
+        {"date": "2025-06-22", "venue": "東京", "race": "府中牝馬S", "distance": 1800, "surface": "芝", "finish": 14, "runners": 14},
+        {"date": "2025-04-20", "venue": "福島", "race": "福島牝馬S", "distance": 1800, "surface": "芝", "finish": 3, "runners": 16},
+        {"date": "2025-03-08", "venue": "中山", "race": "中山牝馬S", "distance": 1800, "surface": "芝", "finish": 5, "runners": 14}
+      ]
+    },
+    {
+      "number": 5,
+      "name": "リラボニート",
+      "jockey": "横山武史",
+      "odds": 44.0,
+      "weight": 466,
+      "recent_races": [
+        {"date": "2025-08-31", "venue": "札幌", "race": "日高S", "distance": 1500, "surface": "芝", "finish": 1, "runners": 13},
+        {"date": "2025-08-02", "venue": "札幌", "race": "釧路湿原特別", "distance": 1800, "surface": "芝", "finish": 1, "runners": 14},
+        {"date": "2025-07-19", "venue": "函館", "race": "かもめ島特別", "distance": 1800, "surface": "芝", "finish": 2, "runners": 14},
+        {"date": "2025-06-14", "venue": "函館", "race": "松前特別", "distance": 1800, "surface": "芝", "finish": 8, "runners": 16}
+      ]
+    },
+    {
+      "number": 6,
+      "name": "セフィロ",
+      "jockey": "横山和生",
+      "odds": 41.8,
+      "weight": 474,
+      "recent_races": [
+        {"date": "2025-06-22", "venue": "東京", "race": "多摩川S", "distance": 1400, "surface": "芝", "finish": 1, "runners": 16},
+        {"date": "2025-03-29", "venue": "中京", "race": "豊橋S", "distance": 1600, "surface": "芝", "finish": 4, "runners": 11},
+        {"date": "2025-02-09", "venue": "東京", "race": "初音S", "distance": 1800, "surface": "芝", "finish": 10, "runners": 16},
+        {"date": "2024-11-09", "venue": "東京", "race": "2勝クラス", "distance": 1600, "surface": "芝", "finish": 1, "runners": 12}
+      ]
+    },
+    {
+      "number": 7,
+      "name": "カナテープ",
+      "jockey": "佐々木大輔",
+      "odds": 6.2,
+      "weight": 468,
+      "recent_races": [
+        {"date": "2025-07-27", "venue": "新潟", "race": "関屋記念", "distance": 1600, "surface": "芝", "finish": 1, "runners": 18},
+        {"date": "2025-06-22", "venue": "東京", "race": "府中牝馬S", "distance": 1800, "surface": "芝", "finish": 2, "runners": 14},
+        {"date": "2025-02-09", "venue": "東京", "race": "初音S", "distance": 1800, "surface": "芝", "finish": 1, "runners": 16}
+      ]
+    },
+    {
+      "number": 8,
+      "name": "ボンドガール",
+      "jockey": "C.ルメール",
+      "odds": 4.2,
+      "weight": 458,
+      "recent_races": [
+        {"date": "2025-07-27", "venue": "新潟", "race": "関屋記念", "distance": 1600, "surface": "芝", "finish": 2, "runners": 18},
+        {"date": "2025-05-18", "venue": "東京", "race": "ヴィクトリア", "distance": 1600, "surface": "芝", "finish": 16, "runners": 17},
+        {"date": "2025-04-12", "venue": "阪神", "race": "阪神牝馬S", "distance": 1600, "surface": "芝", "finish": 5, "runners": 14}
+      ]
+    },
+    {
+      "number": 9,
+      "name": "ピースオブザライフ",
+      "jockey": "菊沢一樹",
+      "odds": 140.0,
+      "weight": 492,
+      "recent_races": [
+        {"date": "2025-08-03", "venue": "中京", "race": "名鉄杯", "distance": 1800, "surface": "ダート", "finish": 9, "runners": 12},
+        {"date": "2025-07-13", "venue": "小倉", "race": "阿蘇S", "distance": 1700, "surface": "ダート", "finish": 8, "runners": 16},
+        {"date": "2025-05-31", "venue": "東京", "race": "アハルテケS", "distance": 1600, "surface": "ダート", "finish": 14, "runners": 16},
+        {"date": "2025-02-10", "venue": "京都", "race": "アルデバラン", "distance": 1900, "surface": "ダート", "finish": 11, "runners": 16}
+      ]
+    },
+    {
+      "number": 10,
+      "name": "ライラック",
+      "jockey": "石川裕紀人",
+      "odds": 14.5,
+      "weight": 458,
+      "recent_races": [
+        {"date": "2025-08-03", "venue": "札幌", "race": "クイーンS", "distance": 1800, "surface": "芝", "finish": 4, "runners": 14},
+        {"date": "2025-04-20", "venue": "福島", "race": "福島牝馬S", "distance": 1800, "surface": "芝", "finish": 8, "runners": 16},
+        {"date": "2025-03-16", "venue": "中京", "race": "金鯱賞", "distance": 2000, "surface": "芝", "finish": 8, "runners": 10},
+        {"date": "2025-01-26", "venue": "中山", "race": "AJCC", "distance": 2200, "surface": "芝", "finish": 5, "runners": 18}
+      ]
+    },
+    {
+      "number": 11,
+      "name": "セキトバイースト",
+      "jockey": "浜中俊",
+      "odds": 5.6,
+      "weight": 478,
+      "recent_races": [
+        {"date": "2025-06-22", "venue": "東京", "race": "府中牝馬S", "distance": 1800, "surface": "芝", "finish": 1, "runners": 14},
+        {"date": "2025-05-25", "venue": "京都", "race": "都大路S", "distance": 1800, "surface": "芝", "finish": 1, "runners": 17},
+        {"date": "2025-04-20", "venue": "福島", "race": "福島牝馬S", "distance": 1800, "surface": "芝", "finish": 10, "runners": 16}
+      ]
+    },
+    {
+      "number": 12,
+      "name": "ドゥアイズ",
+      "jockey": "三浦皇成",
+      "odds": 38.5,
+      "weight": 476,
+      "recent_races": [
+        {"date": "2025-07-13", "venue": "小倉", "race": "阿蘇S", "distance": 1700, "surface": "ダート", "finish": 12, "runners": 16},
+        {"date": "2025-05-31", "venue": "東京", "race": "アハルテケS", "distance": 1600, "surface": "ダート", "finish": 12, "runners": 16},
+        {"date": "2025-04-12", "venue": "阪神", "race": "阪神牝馬S", "distance": 1600, "surface": "芝", "finish": 8, "runners": 14},
+        {"date": "2025-01-05", "venue": "中京", "race": "スポ京都金杯", "distance": 1600, "surface": "芝", "finish": 11, "runners": 16}
+      ]
+    },
+    {
+      "number": 13,
+      "name": "サフィラ",
+      "jockey": "松山弘平",
+      "odds": 13.4,
+      "weight": 464,
+      "recent_races": [
+        {"date": "2025-05-18", "venue": "東京", "race": "ヴィクトリア", "distance": 1600, "surface": "芝", "finish": 13, "runners": 17},
+        {"date": "2025-04-12", "venue": "阪神", "race": "阪神牝馬S", "distance": 1600, "surface": "芝", "finish": 1, "runners": 14},
+        {"date": "2025-02-09", "venue": "京都", "race": "斑鳩S", "distance": 1600, "surface": "芝", "finish": 3, "runners": 14}
+      ]
+    },
+    {
+      "number": 14,
+      "name": "ホウオウラスカーズ",
+      "jockey": "木幡巧也",
+      "odds": 40.9,
+      "weight": 458,
+      "recent_races": [
+        {"date": "2025-09-06", "venue": "中山", "race": "京成杯AH", "distance": 1600, "surface": "芝", "finish": 1, "runners": 16},
+        {"date": "2025-08-09", "venue": "新潟", "race": "関越S", "distance": 1800, "surface": "芝", "finish": 10, "runners": 13},
+        {"date": "2025-05-25", "venue": "京都", "race": "都大路S", "distance": 1800, "surface": "芝", "finish": 7, "runners": 17}
+      ]
+    },
+    {
+      "number": 15,
+      "name": "ラヴァンダ",
+      "jockey": "岩田望来",
+      "odds": 8.8,
+      "weight": 488,
+      "recent_races": [
+        {"date": "2025-09-14", "venue": "阪神", "race": "仲秋S", "distance": 1600, "surface": "芝", "finish": 1, "runners": 11},
+        {"date": "2025-06-22", "venue": "東京", "race": "府中牝馬S", "distance": 1800, "surface": "芝", "finish": 3, "runners": 14},
+        {"date": "2025-05-24", "venue": "京都", "race": "シドニーT", "distance": 2000, "surface": "芝", "finish": 2, "runners": 8}
+      ]
+    },
+    {
+      "number": 16,
+      "name": "アンリーロード",
+      "jockey": "荻野極",
+      "odds": 79.4,
+      "weight": 482,
+      "recent_races": [
+        {"date": "2025-07-19", "venue": "福島", "race": "阿武隈S", "distance": 1800, "surface": "芝", "finish": 1, "runners": 10},
+        {"date": "2025-06-01", "venue": "東京", "race": "むらさき賞", "distance": 1800, "surface": "芝", "finish": 11, "runners": 18},
+        {"date": "2025-05-03", "venue": "新潟", "race": "三条S", "distance": 1800, "surface": "ダート", "finish": 12, "runners": 15},
+        {"date": "2025-03-23", "venue": "中山", "race": "スピカS", "distance": 1800, "surface": "芝", "finish": 8, "runners": 16}
+      ]
+    }
+  ]
+}

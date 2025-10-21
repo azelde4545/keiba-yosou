@@ -1,0 +1,21 @@
+{
+  "prediction_weights": {
+    "recent_form": 0.25,
+    "distance_fit": 0.25,
+    "track_condition": 0.10,
+    "jockey": 0.10,
+    "running_style": 0.10,
+    "bloodline": 0.05,
+    "course_fit": 0.15
+  },
+  "ensemble_weights": {
+    "traditional_system": 0.70,
+    "random_forest": 0.30
+  },
+  "validation": {
+    "prediction_weights_sum": 1.00,
+    "ensemble_weights_sum": 1.00,
+    "last_updated": "2025-07-13",
+    "notes": "研究ベース最適化重み設定 - 近走成績と距離適性を重視"
+  }
+}

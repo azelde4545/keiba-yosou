@@ -1,0 +1,38 @@
+{
+  "scoring": {
+    "defeat_factor_points": 20,
+    "power_condition_bonus": 10,
+    "condition_mismatch_bonus": 5,
+    "consecutive_good_runs_bonus": 15,
+    "dark_horse_history_bonus": {
+      "medium_odds": 5,
+      "big_odds": 10,
+      "over_popularity_penalty": -3
+    }
+  },
+  "weights": {
+    "basic_ability": 0.26,
+    "environment_fit": 0.19,
+    "running_style": 0.18,
+    "post_position": 0.12,
+    "rest_pattern": 0.13,
+    "weight_change": 0.12
+  },
+  "ensemble_weights": {
+    "traditional_system": 0.70,
+    "random_forest": 0.30
+  },
+  "search": {
+    "distance_range": 200,
+    "same_surface_bonus": 5,
+    "same_distance_bonus": 10
+  },
+  "cache": {
+    "max_entries": 100
+  },
+  "bloodline_bonuses": {
+    "short_distance_bonus": 12,
+    "long_distance_bonus": 10,
+    "mile_distance_bonus": 8
+  }
+}

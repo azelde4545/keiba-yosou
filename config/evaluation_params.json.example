@@ -1,0 +1,118 @@
+{
+  "comment": "競馬予想システム評価パラメータ設定ファイル（サンプル）",
+  "description": "このファイルをconfig/evaluation_params.jsonにコピーしてカスタマイズしてください",
+  
+  "weights": {
+    "_comment": "各評価要素の重み配分（合計1.0になるように設定）",
+    "basic_ability": 0.26,
+    "environment_fit": 0.19,
+    "running_style": 0.18,
+    "post_position": 0.12,
+    "rest_pattern": 0.13,
+    "weight_change": 0.12
+  },
+  
+  "scoring": {
+    "_comment": "スコア計算に使用するボーナス点数",
+    "consecutive_good_runs_bonus": 15,
+    "dark_horse_history_bonus": {
+      "_comment": "穴馬実績ボーナス設定",
+      "medium_odds": 5,
+      "big_odds": 10,
+      "over_popularity_penalty": -3
+    },
+    "distance_match_bonus": 10,
+    "surface_match_bonus": 5
+  },
+  
+  "cache": {
+    "_comment": "キャッシュ設定",
+    "max_entries": 1000,
+    "enable_calculation_cache": true,
+    "cache_cleanup_threshold": 1200
+  },
+  
+  "search": {
+    "_comment": "検索・マッチング条件",
+    "distance_range": 200,
+    "min_recent_results": 1,
+    "max_recent_results": 5
+  },
+  
+  "odds_ranges": {
+    "_comment": "オッズ帯別設定",
+    "super_popular": {
+      "max_odds": 2.0,
+      "default_score": 75.0
+    },
+    "popular": {
+      "min_odds": 2.0,
+      "max_odds": 5.0,
+      "default_score": 68.0
+    },
+    "mid_popular": {
+      "min_odds": 5.0,
+      "max_odds": 10.0,
+      "default_score": 65.0
+    },
+    "mid_odds": {
+      "min_odds": 10.0,
+      "max_odds": 20.0,
+      "default_score": 58.0
+    },
+    "long_shot": {
+      "min_odds": 20.0,
+      "max_odds": 50.0,
+      "default_score": 50.0
+    },
+    "super_long_shot": {
+      "min_odds": 50.0,
+      "default_score": 45.0
+    }
+  },
+  
+  "validation": {
+    "_comment": "入力データ検証設定",
+    "min_odds": 1.0,
+    "max_odds": 1000.0,
+    "min_horse_number": 1,
+    "max_horse_number": 18,
+    "min_distance": 1000,
+    "max_distance": 4000,
+    "required_fields": [
+      "horse_name",
+      "odds",
+      "horse_number"
+    ]
+  },
+  
+  "performance": {
+    "_comment": "パフォーマンス設定",
+    "enable_profiling": false,
+    "slow_operation_threshold": 0.5,
+    "memory_warning_threshold_mb": 500
+  },
+  
+  "system": {
+    "_comment": "システム動作設定",
+    "auto_mode": false,
+    "phase_confirmation_required": true,
+    "enable_batch_processing": false,
+    "quiet_mode": false
+  },
+  
+  "advanced": {
+    "_comment": "上級者向け設定",
+    "random_forest": {
+      "n_estimators": 100,
+      "max_depth": 10,
+      "random_state": 42,
+      "enable_real_data_training": true
+    },
+    "feature_engineering": {
+      "enable_bloodline_bonus": true,
+      "enable_jockey_bonus": true,
+      "enable_trainer_bonus": false
+    }
+  }
+}

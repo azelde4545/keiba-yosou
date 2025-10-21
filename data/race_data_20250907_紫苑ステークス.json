@@ -1,0 +1,35 @@
+{
+  "race_info": {
+    "name": "紫苑ステークス",
+    "date": "2025-09-07",
+    "race_time": "15:45",
+    "venue": "不明",
+    "distance": 1600,
+    "course_type": "芝",
+    "weather": "良",
+    "track_condition": "良",
+    "class_level": "OP"
+  },
+  "horses": [
+    {
+      "name": "テストホース",
+      "number": 1,
+      "jockey": "田中",
+      "weight": 57.0,
+      "odds": 3.2,
+      "popularity": 1,
+      "recent_races": []
+    },
+    {
+      "name": "サンプル馬",
+      "number": 2,
+      "jockey": "佐藤",
+      "weight": 57.0,
+      "odds": 5.1,
+      "popularity": 2,
+      "recent_races": []
+    }
+  ],
+  "generated_at": "2025-09-15T15:25:49.695078",
+  "filename": "race_data_20250907_紫苑ステークス.json"
+}

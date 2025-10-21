@@ -1,0 +1,1111 @@
+{
+  "timestamp": "2025-10-20T23:35:07.223082",
+  "race_data": {
+    "race_info": {
+      "name": "第28回富士ステークス",
+      "date": "2025-10-18",
+      "venue": "東京",
+      "distance": 1600,
+      "course_type": "芝・左"
+    },
+    "horses": [
+      {
+        "number": 1,
+        "name": "マジックサンス",
+        "jockey": "武豊",
+        "odds": 6.1,
+        "weight": 55.0,
+        "recent_races": [
+          {
+            "date": "2025-05-11",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 6,
+            "runners": 14
+          },
+          {
+            "date": "2025-04-20",
+            "venue": "2000芝",
+            "distance": 2000,
+            "finish": 6,
+            "runners": 12
+          },
+          {
+            "date": "2024-12-28",
+            "venue": "2000芝",
+            "distance": 2000,
+            "finish": 3,
+            "runners": 9
+          },
+          {
+            "date": "2024-08-31",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 1,
+            "runners": 10
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "name": "ウォーターリヒト",
+        "jockey": "菅原明良",
+        "odds": 13.4,
+        "weight": 57.0,
+        "recent_races": [
+          {
+            "date": "2025-08-17",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 4,
+            "runners": 9
+          },
+          {
+            "date": "2025-06-08",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 5,
+            "runners": 5
+          },
+          {
+            "date": "2025-04-27",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 2,
+            "runners": 12
+          },
+          {
+            "date": "2025-02-09",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 1,
+            "runners": 11
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "name": "シャイニーロック",
+        "jockey": "山本聡哉",
+        "odds": 153.3,
+        "weight": 57.0,
+        "recent_races": [
+          {
+            "date": "2025-07-15",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 4,
+            "runners": 10
+          },
+          {
+            "date": "2025-06-22",
+            "venue": "1400ダ",
+            "distance": 1400,
+            "finish": 2,
+            "runners": 10
+          },
+          {
+            "date": "2025-05-04",
+            "venue": "1200芝",
+            "distance": 1200,
+            "finish": 1,
+            "runners": 10
+          },
+          {
+            "date": "2025-03-09",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 3,
+            "runners": 10
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "name": "ウンブライル",
+        "jockey": "C.ルメール",
+        "odds": 21.1,
+        "weight": 55.0,
+        "recent_races": [
+          {
+            "date": "2025-06-22",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 4,
+            "runners": 10
+          },
+          {
+            "date": "2025-05-06",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 1,
+            "runners": 10
+          },
+          {
+            "date": "2025-02-01",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 1,
+            "runners": 10
+          },
+          {
+            "date": "2024-12-21",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 3,
+            "runners": 10
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "name": "レイレベリング",
+        "jockey": "津村明秀",
+        "odds": 154.3,
+        "weight": 57.0,
+        "recent_races": [
+          {
+            "date": "2025-08-24",
+            "venue": "1400芝",
+            "distance": 1400,
+            "finish": 5,
+            "runners": 9
+          },
+          {
+            "date": "2025-06-08",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 3,
+            "runners": 10
+          },
+          {
+            "date": "2025-04-05",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 1,
+            "runners": 10
+          },
+          {
+            "date": "2025-02-02",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 3,
+            "runners": 9
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "name": "ソウルラッシュ",
+        "jockey": "横山和生",
+        "odds": 6.9,
+        "weight": 59.0,
+        "recent_races": []
+      },
+      {
+        "number": 7,
+        "name": "ドゥレイズ",
+        "jockey": "坂井瑠星",
+        "odds": 15.7,
+        "weight": 57.0,
+        "recent_races": []
+      },
+      {
+        "number": 8,
+        "name": "シンエンペラー",
+        "jockey": "岩田康誠",
+        "odds": 40.3,
+        "weight": 57.0,
+        "recent_races": []
+      },
+      {
+        "number": 9,
+        "name": "プレストウィック",
+        "jockey": "富田暁",
+        "odds": 41.9,
+        "weight": 57.0,
+        "recent_races": []
+      },
+      {
+        "number": 10,
+        "name": "グリューネグリーン",
+        "jockey": "石橋脩",
+        "odds": 198.4,
+        "weight": 57.0,
+        "recent_races": [
+          {
+            "date": "2025-08-16",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 6,
+            "runners": 10
+          },
+          {
+            "date": "2025-05-11",
+            "venue": "2400芝",
+            "distance": 2400,
+            "finish": 6,
+            "runners": 9
+          },
+          {
+            "date": "2025-03-02",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 8,
+            "runners": 12
+          },
+          {
+            "date": "2024-10-06",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 13,
+            "runners": 10
+          }
+        ]
+      },
+      {
+        "number": 11,
+        "name": "ガイアフォース",
+        "jockey": "横山武史",
+        "odds": 7.1,
+        "weight": 57.0,
+        "recent_races": [
+          {
+            "date": "2025-08-24",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 2,
+            "runners": 10
+          },
+          {
+            "date": "2025-06-01",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 9,
+            "runners": 11
+          },
+          {
+            "date": "2025-04-27",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 1,
+            "runners": 10
+          },
+          {
+            "date": "2025-02-23",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 1,
+            "runners": 10
+          }
+        ]
+      },
+      {
+        "number": 12,
+        "name": "シャンパンカラー",
+        "jockey": "戸崎圭太",
+        "odds": 17.3,
+        "weight": 58.0,
+        "recent_races": [
+          {
+            "date": "2025-08-03",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 1,
+            "runners": 11
+          },
+          {
+            "date": "2025-04-13",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 11,
+            "runners": 9
+          },
+          {
+            "date": "2024-12-08",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 5,
+            "runners": 11
+          },
+          {
+            "date": "2024-11-17",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 10,
+            "runners": 10
+          }
+        ]
+      },
+      {
+        "number": 13,
+        "name": "ファーヴェント",
+        "jockey": "佐々木大輔",
+        "odds": 48.6,
+        "weight": 57.0,
+        "recent_races": [
+          {
+            "date": "2025-08-24",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 1,
+            "runners": 9
+          },
+          {
+            "date": "2025-05-18",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 1,
+            "runners": 10
+          },
+          {
+            "date": "2025-04-05",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 6,
+            "runners": 10
+          },
+          {
+            "date": "2024-12-08",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 1,
+            "runners": 10
+          }
+        ]
+      },
+      {
+        "number": 14,
+        "name": "ジャンタルマンタル",
+        "jockey": "川田将雅",
+        "odds": 2.0,
+        "weight": 59.0,
+        "recent_races": [
+          {
+            "date": "2025-08-17",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 1,
+            "runners": 10
+          },
+          {
+            "date": "2025-06-08",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 1,
+            "runners": 10
+          },
+          {
+            "date": "2025-04-27",
+            "venue": "1600芝",
+            "distance": 1600,
+            "finish": 1,
+            "runners": 10
+          },
+          {
+            "date": "2025-03-09",
+            "venue": "1800芝",
+            "distance": 1800,
+            "finish": 1,
+            "runners": 10
+          }
+        ]
+      }
+    ]
+  },
+  "ability_evaluation": [
+    {
+      "name": "ウンブライル",
+      "number": 4,
+      "odds": 21.1,
+      "jockey": "C.ルメール",
+      "weight": 55.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 71.8,
+      "performance_score": 75.0,
+      "course_fit_score": 76.8,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": -10,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "ファーヴェント",
+      "number": 13,
+      "odds": 48.6,
+      "jockey": "佐々木大輔",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 71.49,
+      "performance_score": 81.1,
+      "course_fit_score": 67.2,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "シャイニーロック",
+      "number": 3,
+      "odds": 153.3,
+      "jockey": "山本聡哉",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 69.21,
+      "performance_score": 74.2,
+      "course_fit_score": 67.2,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": -10,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "レイレベリング",
+      "number": 5,
+      "odds": 154.3,
+      "jockey": "津村明秀",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 68.92,
+      "performance_score": 70.9,
+      "course_fit_score": 67.2,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "ウォーターリヒト",
+      "number": 2,
+      "odds": 13.4,
+      "jockey": "菅原明良",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 65.74,
+      "performance_score": 71.9,
+      "course_fit_score": 60.0,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 65,
+      "class_penalty": 0
+    },
+    {
+      "name": "シャンパンカラー",
+      "number": 12,
+      "odds": 17.3,
+      "jockey": "戸崎圭太",
+      "weight": 58.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 62.43,
+      "performance_score": 58.7,
+      "course_fit_score": 60.0,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 65,
+      "class_penalty": 0
+    },
+    {
+      "name": "グリューネグリーン",
+      "number": 10,
+      "odds": 198.4,
+      "jockey": "石橋脩",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 61.98,
+      "performance_score": 49.7,
+      "course_fit_score": 60.0,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "シンエンペラー",
+      "number": 8,
+      "odds": 40.3,
+      "jockey": "岩田康誠",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 61.9,
+      "performance_score": 50,
+      "course_fit_score": 60,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "プレストウィック",
+      "number": 9,
+      "odds": 41.9,
+      "jockey": "富田暁",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 61.9,
+      "performance_score": 50,
+      "course_fit_score": 60,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "ジャンタルマンタル",
+      "number": 14,
+      "odds": 2.0,
+      "jockey": "川田将雅",
+      "weight": 59.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 61.67,
+      "performance_score": 85.0,
+      "course_fit_score": 74.4,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": 0,
+      "odds_value_score": 55.9,
+      "dark_horse_score": 40,
+      "class_penalty": 0
+    },
+    {
+      "name": "マジックサンス",
+      "number": 1,
+      "odds": 6.1,
+      "jockey": "武豊",
+      "weight": 55.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 60.5,
+      "performance_score": 64.2,
+      "course_fit_score": 74.4,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": -10,
+      "odds_value_score": 82.3,
+      "dark_horse_score": 40,
+      "class_penalty": 0
+    },
+    {
+      "name": "ドゥレイズ",
+      "number": 7,
+      "odds": 15.7,
+      "jockey": "坂井瑠星",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 60.1,
+      "performance_score": 50,
+      "course_fit_score": 60,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 65,
+      "class_penalty": 0
+    },
+    {
+      "name": "ガイアフォース",
+      "number": 11,
+      "odds": 7.1,
+      "jockey": "横山武史",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 59.3,
+      "performance_score": 69.0,
+      "course_fit_score": 60.0,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 85.8,
+      "dark_horse_score": 40,
+      "class_penalty": 0
+    },
+    {
+      "name": "ソウルラッシュ",
+      "number": 6,
+      "odds": 6.9,
+      "jockey": "横山和生",
+      "weight": 59.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 53.13,
+      "performance_score": 50,
+      "course_fit_score": 60,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 78.0,
+      "dark_horse_score": 40,
+      "class_penalty": 0
+    }
+  ],
+  "value_evaluation": [
+    {
+      "name": "ウンブライル",
+      "number": 4,
+      "odds": 21.1,
+      "jockey": "C.ルメール",
+      "weight": 55.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 73.76,
+      "performance_score": 75.0,
+      "course_fit_score": 76.8,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": -10,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "ファーヴェント",
+      "number": 13,
+      "odds": 48.6,
+      "jockey": "佐々木大輔",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 73.51,
+      "performance_score": 81.1,
+      "course_fit_score": 67.2,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "シャイニーロック",
+      "number": 3,
+      "odds": 153.3,
+      "jockey": "山本聡哉",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 71.39,
+      "performance_score": 74.2,
+      "course_fit_score": 67.2,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": -10,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "レイレベリング",
+      "number": 5,
+      "odds": 154.3,
+      "jockey": "津村明秀",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 71.25,
+      "performance_score": 70.9,
+      "course_fit_score": 67.2,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "ウォーターリヒト",
+      "number": 2,
+      "odds": 13.4,
+      "jockey": "菅原明良",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 67.68,
+      "performance_score": 71.9,
+      "course_fit_score": 60.0,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 65,
+      "class_penalty": 0
+    },
+    {
+      "name": "グリューネグリーン",
+      "number": 10,
+      "odds": 198.4,
+      "jockey": "石橋脩",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 65.04,
+      "performance_score": 49.7,
+      "course_fit_score": 60.0,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "シンエンペラー",
+      "number": 8,
+      "odds": 40.3,
+      "jockey": "岩田康誠",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 65.0,
+      "performance_score": 50,
+      "course_fit_score": 60,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "プレストウィック",
+      "number": 9,
+      "odds": 41.9,
+      "jockey": "富田暁",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 65.0,
+      "performance_score": 50,
+      "course_fit_score": 60,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 80,
+      "class_penalty": 0
+    },
+    {
+      "name": "シャンパンカラー",
+      "number": 12,
+      "odds": 17.3,
+      "jockey": "戸崎圭太",
+      "weight": 58.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 64.77,
+      "performance_score": 58.7,
+      "course_fit_score": 60.0,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 65,
+      "class_penalty": 0
+    },
+    {
+      "name": "ドゥレイズ",
+      "number": 7,
+      "odds": 15.7,
+      "jockey": "坂井瑠星",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 62.75,
+      "performance_score": 50,
+      "course_fit_score": 60,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 100,
+      "dark_horse_score": 65,
+      "class_penalty": 0
+    },
+    {
+      "name": "マジックサンス",
+      "number": 1,
+      "odds": 6.1,
+      "jockey": "武豊",
+      "weight": 55.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 60.75,
+      "performance_score": 64.2,
+      "course_fit_score": 74.4,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": -10,
+      "odds_value_score": 82.3,
+      "dark_horse_score": 40,
+      "class_penalty": 0
+    },
+    {
+      "name": "ジャンタルマンタル",
+      "number": 14,
+      "odds": 2.0,
+      "jockey": "川田将雅",
+      "weight": 59.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 59.98,
+      "performance_score": 85.0,
+      "course_fit_score": 74.4,
+      "track_condition_score": 50,
+      "weight_change_score": 65,
+      "interval_score": 0,
+      "odds_value_score": 55.9,
+      "dark_horse_score": 40,
+      "class_penalty": 0
+    },
+    {
+      "name": "ガイアフォース",
+      "number": 11,
+      "odds": 7.1,
+      "jockey": "横山武史",
+      "weight": 57.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 59.92,
+      "performance_score": 69.0,
+      "course_fit_score": 60.0,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 85.8,
+      "dark_horse_score": 40,
+      "class_penalty": 0
+    },
+    {
+      "name": "ソウルラッシュ",
+      "number": 6,
+      "odds": 6.9,
+      "jockey": "横山和生",
+      "weight": 59.0,
+      "weight_change": "?",
+      "popularity": "?",
+      "final_score": 53.93,
+      "performance_score": 50,
+      "course_fit_score": 60,
+      "track_condition_score": 50,
+      "weight_change_score": 60,
+      "interval_score": 0,
+      "odds_value_score": 78.0,
+      "dark_horse_score": 40,
+      "class_penalty": 0
+    }
+  ],
+  "betting_strategy": {
+    "strategy": "単勝3点買い",
+    "purchase_plan": [
+      {
+        "type": "単勝",
+        "horses": [
+          {
+            "name": "ウンブライル",
+            "number": 4,
+            "odds": 21.1,
+            "jockey": "C.ルメール",
+            "weight": 55.0,
+            "weight_change": "?",
+            "popularity": "?",
+            "final_score": 71.8,
+            "performance_score": 75.0,
+            "course_fit_score": 76.8,
+            "track_condition_score": 50,
+            "weight_change_score": 65,
+            "interval_score": -10,
+            "odds_value_score": 100,
+            "dark_horse_score": 80,
+            "class_penalty": 0,
+            "ability_score": 71.8
+          }
+        ],
+        "amount": 200
+      },
+      {
+        "type": "単勝",
+        "horses": [
+          {
+            "name": "ファーヴェント",
+            "number": 13,
+            "odds": 48.6,
+            "jockey": "佐々木大輔",
+            "weight": 57.0,
+            "weight_change": "?",
+            "popularity": "?",
+            "final_score": 71.49,
+            "performance_score": 81.1,
+            "course_fit_score": 67.2,
+            "track_condition_score": 50,
+            "weight_change_score": 60,
+            "interval_score": 0,
+            "odds_value_score": 100,
+            "dark_horse_score": 80,
+            "class_penalty": 0,
+            "ability_score": 71.49
+          }
+        ],
+        "amount": 100
+      },
+      {
+        "type": "単勝",
+        "horses": [
+          {
+            "name": "レイレベリング",
+            "number": 5,
+            "odds": 154.3,
+            "jockey": "津村明秀",
+            "weight": 57.0,
+            "weight_change": "?",
+            "popularity": "?",
+            "final_score": 71.25,
+            "performance_score": 70.9,
+            "course_fit_score": 67.2,
+            "track_condition_score": 50,
+            "weight_change_score": 60,
+            "interval_score": 0,
+            "odds_value_score": 100,
+            "dark_horse_score": 80,
+            "class_penalty": 0,
+            "value_score": 71.25
+          }
+        ],
+        "amount": 100
+      }
+    ],
+    "total_bet": 400,
+    "purchase_guide": "\n【購入ガイド - 単勝3点買い】\n==================================================\n\n◆ 推奨馬（役割別）\n\n【本命】 4番 ウンブライル\n   オッズ: 21.1倍 | 実力評価: 71.80点\n   理由: 実力評価で最高スコア\n\n【対抗1】 13番 ファーヴェント\n   オッズ: 48.6倍 | 実力評価: 71.49点\n\n【対抗2】 3番 シャイニーロック\n   オッズ: 153.3倍 | 実力評価: 69.21点\n\n【穴馬1】 5番 レイレベリング\n   オッズ: 154.3倍 | 期待値評価: 71.25点\n   理由: 実力に対してオッズが割安\n\n【穴馬2】 2番 ウォーターリヒト\n   オッズ: 13.4倍 | 期待値評価: 67.68点\n   理由: 実力に対してオッズが割安\n\n◆ 購入プラン（単勝のみ）\n1. 単勝 4番 ウンブライル: 200円\n2. 単勝 13番 ファーヴェント: 100円\n3. 単勝 5番 レイレベリング: 100円\n\n◆ 投資戦略\n総投資額: 400円\n購入馬券: 単勝3点買い\n\n◆ 他の馬券を検討する場合\n馬連・ワイド等の購入を検討される場合は、お気軽にご相談ください。\n概算オッズの計算や、期待値の分析などをサポートいたします。\n\n◆ 注意事項\n・投資は自己責任でお願いします\n・オッズは変動する可能性があります\n・予想は過去データに基づく分析です\n",
+    "horses": {
+      "honmei": {
+        "name": "ウンブライル",
+        "number": 4,
+        "odds": 21.1,
+        "jockey": "C.ルメール",
+        "weight": 55.0,
+        "weight_change": "?",
+        "popularity": "?",
+        "final_score": 71.8,
+        "performance_score": 75.0,
+        "course_fit_score": 76.8,
+        "track_condition_score": 50,
+        "weight_change_score": 65,
+        "interval_score": -10,
+        "odds_value_score": 100,
+        "dark_horse_score": 80,
+        "class_penalty": 0,
+        "ability_score": 71.8
+      },
+      "taikou": [
+        {
+          "name": "ファーヴェント",
+          "number": 13,
+          "odds": 48.6,
+          "jockey": "佐々木大輔",
+          "weight": 57.0,
+          "weight_change": "?",
+          "popularity": "?",
+          "final_score": 71.49,
+          "performance_score": 81.1,
+          "course_fit_score": 67.2,
+          "track_condition_score": 50,
+          "weight_change_score": 60,
+          "interval_score": 0,
+          "odds_value_score": 100,
+          "dark_horse_score": 80,
+          "class_penalty": 0,
+          "ability_score": 71.49
+        },
+        {
+          "name": "シャイニーロック",
+          "number": 3,
+          "odds": 153.3,
+          "jockey": "山本聡哉",
+          "weight": 57.0,
+          "weight_change": "?",
+          "popularity": "?",
+          "final_score": 69.21,
+          "performance_score": 74.2,
+          "course_fit_score": 67.2,
+          "track_condition_score": 50,
+          "weight_change_score": 65,
+          "interval_score": -10,
+          "odds_value_score": 100,
+          "dark_horse_score": 80,
+          "class_penalty": 0,
+          "ability_score": 69.21
+        }
+      ],
+      "anaume": [
+        {
+          "name": "レイレベリング",
+          "number": 5,
+          "odds": 154.3,
+          "jockey": "津村明秀",
+          "weight": 57.0,
+          "weight_change": "?",
+          "popularity": "?",
+          "final_score": 71.25,
+          "performance_score": 70.9,
+          "course_fit_score": 67.2,
+          "track_condition_score": 50,
+          "weight_change_score": 60,
+          "interval_score": 0,
+          "odds_value_score": 100,
+          "dark_horse_score": 80,
+          "class_penalty": 0,
+          "value_score": 71.25
+        },
+        {
+          "name": "ウォーターリヒト",
+          "number": 2,
+          "odds": 13.4,
+          "jockey": "菅原明良",
+          "weight": 57.0,
+          "weight_change": "?",
+          "popularity": "?",
+          "final_score": 67.68,
+          "performance_score": 71.9,
+          "course_fit_score": 60.0,
+          "track_condition_score": 50,
+          "weight_change_score": 65,
+          "interval_score": 0,
+          "odds_value_score": 100,
+          "dark_horse_score": 65,
+          "class_penalty": 0,
+          "value_score": 67.68
+        }
+      ]
+    }
+  },
+  "pace_analysis": {
+    "pace": "平均",
+    "adjustments": {}
+  }
+}

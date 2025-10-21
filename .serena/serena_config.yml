@@ -1,0 +1,24 @@
+# Serena main configuration
+enable_project_activation: true
+
+# Default project settings
+default_tools:
+  enable_all: true
+  read_only: false
+
+# Language server settings
+language_servers:
+  python:
+    enabled: true
+
+# Logging configuration
+logging:
+  level: INFO
+  enable_gui: false
+  
+# Projects list
+projects:
+  - "C:\\Users\\setsu\\Desktop\\claude\\keiba\\.serena\\project.yml"
+
+# Default context
+context: "ide-assistant"

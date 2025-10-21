@@ -1,0 +1,173 @@
+{
+  "race_info": {
+    "name": "第28回富士ステークス",
+    "date": "2025-10-18",
+    "venue": "東京",
+    "distance": 1600,
+    "course_type": "芝・左"
+  },
+  "horses": [
+    {
+      "number": 1,
+      "name": "マジックサンス",
+      "jockey": "武豊",
+      "odds": 6.1,
+      "weight": 55.0,
+      "recent_races": [
+        {"date": "2025-05-11", "venue": "1600芝", "distance": 1600, "finish": 6, "runners": 14},
+        {"date": "2025-04-20", "venue": "2000芝", "distance": 2000, "finish": 6, "runners": 12},
+        {"date": "2024-12-28", "venue": "2000芝", "distance": 2000, "finish": 3, "runners": 9},
+        {"date": "2024-08-31", "venue": "1800芝", "distance": 1800, "finish": 1, "runners": 10}
+      ]
+    },
+    {
+      "number": 2,
+      "name": "ウォーターリヒト",
+      "jockey": "菅原明良",
+      "odds": 13.4,
+      "weight": 57.0,
+      "recent_races": [
+        {"date": "2025-08-17", "venue": "1600芝", "distance": 1600, "finish": 4, "runners": 9},
+        {"date": "2025-06-08", "venue": "1600芝", "distance": 1600, "finish": 5, "runners": 5},
+        {"date": "2025-04-27", "venue": "1600芝", "distance": 1600, "finish": 2, "runners": 12},
+        {"date": "2025-02-09", "venue": "1600芝", "distance": 1600, "finish": 1, "runners": 11}
+      ]
+    },
+    {
+      "number": 3,
+      "name": "シャイニーロック",
+      "jockey": "山本聡哉",
+      "odds": 153.3,
+      "weight": 57.0,
+      "recent_races": [
+        {"date": "2025-07-15", "venue": "1600芝", "distance": 1600, "finish": 4, "runners": 10},
+        {"date": "2025-06-22", "venue": "1400ダ", "distance": 1400, "finish": 2, "runners": 10},
+        {"date": "2025-05-04", "venue": "1200芝", "distance": 1200, "finish": 1, "runners": 10},
+        {"date": "2025-03-09", "venue": "1800芝", "distance": 1800, "finish": 3, "runners": 10}
+      ]
+    },
+    {
+      "number": 4,
+      "name": "ウンブライル",
+      "jockey": "C.ルメール",
+      "odds": 21.1,
+      "weight": 55.0,
+      "recent_races": [
+        {"date": "2025-06-22", "venue": "1800芝", "distance": 1800, "finish": 4, "runners": 10},
+        {"date": "2025-05-06", "venue": "1600芝", "distance": 1600, "finish": 1, "runners": 10},
+        {"date": "2025-02-01", "venue": "1800芝", "distance": 1800, "finish": 1, "runners": 10},
+        {"date": "2024-12-21", "venue": "1800芝", "distance": 1800, "finish": 3, "runners": 10}
+      ]
+    },
+    {
+      "number": 5,
+      "name": "レイレベリング",
+      "jockey": "津村明秀",
+      "odds": 154.3,
+      "weight": 57.0,
+      "recent_races": [
+        {"date": "2025-08-24", "venue": "1400芝", "distance": 1400, "finish": 5, "runners": 9},
+        {"date": "2025-06-08", "venue": "1600芝", "distance": 1600, "finish": 3, "runners": 10},
+        {"date": "2025-04-05", "venue": "1800芝", "distance": 1800, "finish": 1, "runners": 10},
+        {"date": "2025-02-02", "venue": "1600芝", "distance": 1600, "finish": 3, "runners": 9}
+      ]
+    },
+    {
+      "number": 6,
+      "name": "ソウルラッシュ",
+      "jockey": "横山和生",
+      "odds": 6.9,
+      "weight": 59.0,
+      "recent_races": []
+    },
+    {
+      "number": 7,
+      "name": "ドゥレイズ",
+      "jockey": "坂井瑠星",
+      "odds": 15.7,
+      "weight": 57.0,
+      "recent_races": []
+    },
+    {
+      "number": 8,
+      "name": "シンエンペラー",
+      "jockey": "岩田康誠",
+      "odds": 40.3,
+      "weight": 57.0,
+      "recent_races": []
+    },
+    {
+      "number": 9,
+      "name": "プレストウィック",
+      "jockey": "富田暁",
+      "odds": 41.9,
+      "weight": 57.0,
+      "recent_races": []
+    },
+    {
+      "number": 10,
+      "name": "グリューネグリーン",
+      "jockey": "石橋脩",
+      "odds": 198.4,
+      "weight": 57.0,
+      "recent_races": [
+        {"date": "2025-08-16", "venue": "1600芝", "distance": 1600, "finish": 6, "runners": 10},
+        {"date": "2025-05-11", "venue": "2400芝", "distance": 2400, "finish": 6, "runners": 9},
+        {"date": "2025-03-02", "venue": "1800芝", "distance": 1800, "finish": 8, "runners": 12},
+        {"date": "2024-10-06", "venue": "1800芝", "distance": 1800, "finish": 13, "runners": 10}
+      ]
+    },
+    {
+      "number": 11,
+      "name": "ガイアフォース",
+      "jockey": "横山武史",
+      "odds": 7.1,
+      "weight": 57.0,
+      "recent_races": [
+        {"date": "2025-08-24", "venue": "1600芝", "distance": 1600, "finish": 2, "runners": 10},
+        {"date": "2025-06-01", "venue": "1600芝", "distance": 1600, "finish": 9, "runners": 11},
+        {"date": "2025-04-27", "venue": "1600芝", "distance": 1600, "finish": 1, "runners": 10},
+        {"date": "2025-02-23", "venue": "1600芝", "distance": 1600, "finish": 1, "runners": 10}
+      ]
+    },
+    {
+      "number": 12,
+      "name": "シャンパンカラー",
+      "jockey": "戸崎圭太",
+      "odds": 17.3,
+      "weight": 58.0,
+      "recent_races": [
+        {"date": "2025-08-03", "venue": "1600芝", "distance": 1600, "finish": 1, "runners": 11},
+        {"date": "2025-04-13", "venue": "1800芝", "distance": 1800, "finish": 11, "runners": 9},
+        {"date": "2024-12-08", "venue": "1600芝", "distance": 1600, "finish": 5, "runners": 11},
+        {"date": "2024-11-17", "venue": "1600芝", "distance": 1600, "finish": 10, "runners": 10}
+      ]
+    },
+    {
+      "number": 13,
+      "name": "ファーヴェント",
+      "jockey": "佐々木大輔",
+      "odds": 48.6,
+      "weight": 57.0,
+      "recent_races": [
+        {"date": "2025-08-24", "venue": "1600芝", "distance": 1600, "finish": 1, "runners": 9},
+        {"date": "2025-05-18", "venue": "1800芝", "distance": 1800, "finish": 1, "runners": 10},
+        {"date": "2025-04-05", "venue": "1600芝", "distance": 1600, "finish": 6, "runners": 10},
+        {"date": "2024-12-08", "venue": "1600芝", "distance": 1600, "finish": 1, "runners": 10}
+      ]
+    },
+    {
+      "number": 14,
+      "name": "ジャンタルマンタル",
+      "jockey": "川田将雅",
+      "odds": 2.0,
+      "weight": 59.0,
+      "recent_races": [
+        {"date": "2025-08-17", "venue": "1800芝", "distance": 1800, "finish": 1, "runners": 10},
+        {"date": "2025-06-08", "venue": "1600芝", "distance": 1600, "finish": 1, "runners": 10},
+        {"date": "2025-04-27", "venue": "1600芝", "distance": 1600, "finish": 1, "runners": 10},
+        {"date": "2025-03-09", "venue": "1800芝", "distance": 1800, "finish": 1, "runners": 10}
+      ]
+    }
+  ]
+}

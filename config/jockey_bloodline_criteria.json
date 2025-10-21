@@ -1,0 +1,88 @@
+{
+  "jockey_evaluation": {
+    "criteria": {
+      "win_rate_weight": 0.4,
+      "place_rate_weight": 0.3,
+      "recent_form_weight": 0.2,
+      "grade_race_weight": 0.1
+    },
+    "thresholds": {
+      "min_win_rate": 0.12,
+      "min_races_per_year": 100,
+      "top_jockey_threshold": 0.15,
+      "recent_form_period_days": 90
+    },
+    "specialization_bonus": {
+      "turf_specialist": 1.2,
+      "dirt_specialist": 1.15,
+      "heavy_track_specialist": 1.25,
+      "sprint_specialist": 1.1,
+      "distance_specialist": 1.1
+    }
+  },
+  "bloodline_evaluation": {
+    "criteria": {
+      "min_offspring_sample": 50,
+      "confidence_threshold": 0.7,
+      "statistical_significance": 0.05
+    },
+    "distance_categories": {
+      "sprint": {
+        "range": [1000, 1400],
+        "performance_threshold": 0.15
+      },
+      "mile": {
+        "range": [1401, 1800],
+        "performance_threshold": 0.13
+      },
+      "middle": {
+        "range": [1801, 2200],
+        "performance_threshold": 0.12
+      },
+      "long": {
+        "range": [2201, 3200],
+        "performance_threshold": 0.10
+      }
+    },
+    "track_conditions": {
+      "good": {
+        "weight": 1.0,
+        "threshold": 0.12
+      },
+      "yielding": {
+        "weight": 1.1,
+        "threshold": 0.10
+      },
+      "soft": {
+        "weight": 1.2,
+        "threshold": 0.09
+      },
+      "heavy": {
+        "weight": 1.3,
+        "threshold": 0.08
+      }
+    },
+    "surface_preferences": {
+      "turf": {
+        "performance_threshold": 0.12,
+        "grade_race_weight": 1.5
+      },
+      "dirt": {
+        "performance_threshold": 0.11,
+        "grade_race_weight": 1.3
+      }
+    }
+  },
+  "data_sources": {
+    "primary": "jra_official",
+    "secondary": ["netkeiba", "jbis"],
+    "update_frequency": "daily",
+    "cache_duration": 86400
+  },
+  "quality_control": {
+    "min_data_points": 30,
+    "outlier_detection": true,
+    "bias_correction": true,
+    "cross_validation": true
+  }
+}

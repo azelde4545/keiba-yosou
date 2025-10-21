@@ -1,0 +1,71 @@
+{
+  "race_info": {
+    "name": "新レース待機中",
+    "date": "2025-10-20",
+    "venue": "未定",
+    "race_time": "00:00"
+  },
+  "prediction_parameters": {
+    "expected_horse_count": 18,
+    "odds_threshold": 20.0,
+    "final_candidate_count": 8,
+    "min_return_target": 4.0
+  },
+  "betting_strategy": {
+    "total_budget": 400,
+    "min_bet_unit": 100,
+    "auto_mode": false,
+    "target_return_multiple": 4.0
+  },
+  "horse_evaluation": {
+    "weights": {
+      "past_performance": 0.25,
+      "course_fit": 0.25,
+      "track_condition": 0.1,
+      "weight_change": 0.03,
+      "interval_score": 0.07,
+      "odds_value": 0.18,
+      "dark_horse_potential": 0.12
+    },
+    "parallel_processing": {
+      "enabled": true,
+      "max_workers": "auto"
+    },
+    "scoring_thresholds": {
+      "excellent": 80,
+      "good": 65,
+      "average": 50,
+      "poor": 35
+    }
+  },
+  "data_processing": {
+    "encoding": "utf-8",
+    "auto_cleanup": true,
+    "cache_enabled": true,
+    "fallback_mode": true
+  },
+  "error_handling": {
+    "max_retry_attempts": 3,
+    "fallback_enabled": true,
+    "debug_mode": false,
+    "log_level": "INFO"
+  },
+  "cache_settings": {
+    "max_entries": 100,
+    "auto_eviction": true,
+    "performance_monitoring": true
+  },
+  "output_settings": {
+    "detailed_analysis": true,
+    "save_results": true,
+    "export_json": false,
+    "console_summary": true
+  },
+  "system_settings": {
+    "version": "3.0",
+    "evaluation_method": "6要素評価システム",
+    "target_execution_time": "5-10分",
+    "file_structure": "7ファイル構成"
+  },
+  "data_file": "data/race_data_20251012_アイルランドトロフィー.json"
+}

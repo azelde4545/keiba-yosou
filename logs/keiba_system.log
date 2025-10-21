@@ -1,0 +1,253 @@
+[21:22:39] WARNING: [WARNING] オッズ変動チェック:
+[21:22:39] INFO: [OK] 購入可能性検証: 合格
+[21:39:25] WARNING: [WARNING] オッズ変動チェック:
+[21:39:25] INFO: [OK] 購入可能性検証: 合格
+[22:29:10] WARNING: [WARNING] オッズ変動チェック:
+[22:29:10] INFO: [OK] 購入可能性検証: 合格
+[23:10:03] WARNING: [WARNING] オッズ変動チェック:
+[23:10:03] INFO: [OK] 購入可能性検証: 合格
+[15:18:47] WARNING: [WARNING] オッズ変動チェック:
+[15:18:47] INFO: [OK] 購入可能性検証: 合格
+[15:19:45] WARNING: [WARNING] オッズ変動チェック:
+[15:19:45] INFO: [OK] 購入可能性検証: 合格
+[15:19:58] WARNING: [WARNING] オッズ変動チェック:
+[15:19:58] INFO: [OK] 購入可能性検証: 合格
+[15:23:47] WARNING: [WARNING] オッズ変動チェック:
+[15:23:47] INFO: [OK] 購入可能性検証: 合格
+2025-10-05 15:31:36,090 - ERROR - 予期しないエラー: UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f3af' in position 2: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 75, in main
+    print(betting_result["purchase_guide"])
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f3af' in position 2: illegal multibyte sequence
+2025-10-05 15:31:36,094 - INFO - 詳細エラーは上記を参照してください
+2025-10-05 16:58:51,395 - ERROR - 予期しないエラー: UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f3af' in position 2: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 78, in main
+    print(betting_result["purchase_guide"])
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f3af' in position 2: illegal multibyte sequence
+2025-10-05 16:58:51,398 - INFO - 詳細エラーは上記を参照してください
+2025-10-05 17:29:24,845 - ERROR - 予期しないエラー: UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f3af' in position 2: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 78, in main
+    print(betting_result["purchase_guide"])
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f3af' in position 2: illegal multibyte sequence
+2025-10-05 17:29:24,849 - INFO - 詳細エラーは上記を参照してください
+2025-10-05 18:14:39,056 - ERROR - 予期しないエラー: UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f3af' in position 2: illegal multibyte sequence
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 78, in main
+    print(betting_result["purchase_guide"])
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\U0001f3af' in position 2: illegal multibyte sequence
+2025-10-05 18:14:39,059 - INFO - 詳細エラーは上記を参照してください
+2025-10-05 20:21:13,199 - ERROR - 予期しないエラー: TypeError: unsupported operand type(s) for -: 'str' and 'int'
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 52, in main
+    evaluation_results = evaluator.evaluate_horses(race_data)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 91, in evaluate_horses
+    results = list(executor.map(
+        lambda h: self._evaluate_horse(h, race_data), horses
+    ))
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 92, in <lambda>
+    lambda h: self._evaluate_horse(h, race_data), horses
+              ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 101, in _evaluate_horse
+    past_score = self._eval_past_performance(horse)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 151, in _eval_past_performance
+    score = max(30, 100 - (result-1) * 8) + max(-15, (margin-0.5) * -3)
+                           ~~~~~~^~
+TypeError: unsupported operand type(s) for -: 'str' and 'int'
+2025-10-05 20:21:13,218 - INFO - 詳細エラーは上記を参照してください
+2025-10-05 20:25:22,171 - ERROR - 予期しないエラー: TypeError: '<=' not supported between instances of 'str' and 'int'
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 52, in main
+    evaluation_results = evaluator.evaluate_horses(race_data)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 91, in evaluate_horses
+    results = list(executor.map(
+        lambda h: self._evaluate_horse(h, race_data), horses
+    ))
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 92, in <lambda>
+    lambda h: self._evaluate_horse(h, race_data), horses
+              ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 102, in _evaluate_horse
+    course_score = self._eval_course_fit(horse, race_data)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 209, in _eval_course_fit
+    if result <= 3: track_score += 15
+       ^^^^^^^^^^^
+TypeError: '<=' not supported between instances of 'str' and 'int'
+2025-10-05 20:25:22,176 - INFO - 詳細エラーは上記を参照してください
+2025-10-05 22:48:16,453 - ERROR - 予期しないエラー: TypeError: unsupported operand type(s) for +: 'int' and 'str'
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 52, in main
+    evaluation_results = evaluator.evaluate_horses(race_data)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 91, in evaluate_horses
+    results = list(executor.map(
+        lambda h: self._evaluate_horse(h, race_data), horses
+    ))
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 92, in <lambda>
+    lambda h: self._evaluate_horse(h, race_data), horses
+              ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 103, in _evaluate_horse
+    class_score = self._eval_class_fit(horse)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 240, in _eval_class_fit
+    avg = sum(same_class_results) / len(same_class_results)
+          ~~~^^^^^^^^^^^^^^^^^^^^
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+2025-10-05 22:48:16,468 - INFO - 詳細エラーは上記を参照してください
+2025-10-05 23:30:28,902 - ERROR - 予期しないエラー: TypeError: unsupported operand type(s) for +: 'int' and 'str'
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 52, in main
+    evaluation_results = evaluator.evaluate_horses(race_data)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 91, in evaluate_horses
+    results = list(executor.map(
+        lambda h: self._evaluate_horse(h, race_data), horses
+    ))
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Python313\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 92, in <lambda>
+    lambda h: self._evaluate_horse(h, race_data), horses
+              ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 103, in _evaluate_horse
+    class_score = self._eval_class_fit(horse)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\horse_evaluator.py", line 240, in _eval_class_fit
+    avg = sum(same_class_results) / len(same_class_results)
+          ~~~^^^^^^^^^^^^^^^^^^^^
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+2025-10-05 23:30:28,906 - INFO - 詳細エラーは上記を参照してください
+2025-10-08 21:57:49,438 - ERROR - 予期しないエラー: AttributeError: 'BettingStrategy' object has no attribute '_generate_purchase_guide_v2'
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 69, in main
+    betting_result = strategy.generate_betting_plan(evaluation_results)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\betting_strategy.py", line 137, in generate_betting_plan
+    purchase_guide = self._generate_purchase_guide_v2(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BettingStrategy' object has no attribute '_generate_purchase_guide_v2'. Did you mean: '_generate_purchase_guide'?
+2025-10-08 21:57:49,444 - INFO - 詳細エラーは上記を参照してください
+2025-10-12 14:28:03,816 - ERROR - エラー: KeyError: slice(None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 180, in main
+    analysis_text = generate_software_analysis_txt(
+        evaluation_results, betting_result, race_data
+    )
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 61, in generate_software_analysis_txt
+    for i, horse in enumerate(evaluation_results[:5], 1):
+                              ~~~~~~~~~~~~~~~~~~^^^^
+KeyError: slice(None, 5, None)
+2025-10-12 14:38:04,617 - ERROR - エラー: KeyError: slice(None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 180, in main
+    analysis_text = generate_software_analysis_txt(
+        evaluation_results, betting_result, race_data
+    )
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 61, in generate_software_analysis_txt
+    for i, horse in enumerate(evaluation_results[:5], 1):
+                              ~~~~~~~~~~~~~~~~~~^^^^
+KeyError: slice(None, 5, None)
+2025-10-12 14:52:45,084 - ERROR - エラー: KeyError: slice(None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 180, in main
+    analysis_text = generate_software_analysis_txt(
+        evaluation_results, betting_result, race_data
+    )
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 61, in generate_software_analysis_txt
+    for i, horse in enumerate(evaluation_results[:5], 1):
+                              ~~~~~~~~~~~~~~~~~~^^^^
+KeyError: slice(None, 5, None)
+2025-10-12 15:04:27,284 - ERROR - エラー: KeyError: slice(None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 180, in main
+    analysis_text = generate_software_analysis_txt(
+        evaluation_results, betting_result, race_data
+    )
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 61, in generate_software_analysis_txt
+    for i, horse in enumerate(evaluation_results[:5], 1):
+                              ~~~~~~~~~~~~~~~~~~^^^^
+KeyError: slice(None, 5, None)
+2025-10-12 15:23:21,314 - ERROR - エラー: KeyError: slice(None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 180, in main
+    analysis_text = generate_software_analysis_txt(
+        evaluation_results, betting_result, race_data
+    )
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 61, in generate_software_analysis_txt
+    for i, horse in enumerate(evaluation_results[:5], 1):
+                              ~~~~~~~~~~~~~~~~~~^^^^
+KeyError: slice(None, 5, None)
+2025-10-17 22:45:29,670 - ERROR - エラー: AttributeError: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 160, in main
+    betting_result = strategy.generate_betting_plan(ability_results)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\betting_strategy.py", line 79, in generate_betting_plan
+    ability_results = eval_results.get('ability_results', [])
+                      ^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-10-18 23:09:19,597 - ERROR - エラー: TypeError: bad operand type for abs(): 'str'
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 386, in main
+    v2_report = formatter_v2.format_complete_report(race_data, ability_results, value_results)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\result_formatter_v2.py", line 38, in format_complete_report
+    output.append(self._format_weight_analysis(ability_results))
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\result_formatter_v2.py", line 195, in _format_weight_analysis
+    if abs(weight_change) >= 10:  # ±10kg以上
+       ~~~^^^^^^^^^^^^^^^
+TypeError: bad operand type for abs(): 'str'
+2025-10-20 22:34:18,430 - ERROR - エラー: FileNotFoundError: 指定されたファイルが見つかりません: data/race_data_20241019_富士ステークス.json
+Traceback (most recent call last):
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\main.py", line 315, in main
+    data_result = loader.cleanup_and_load(race_data_file)
+  File "C:\Users\setsu\OneDrive\Documents\claude\keiba\data_loader.py", line 292, in cleanup_and_load
+    raise FileNotFoundError(f"指定されたファイルが見つかりません: {race_data_path}")
+FileNotFoundError: 指定されたファイルが見つかりません: data/race_data_20241019_富士ステークス.json

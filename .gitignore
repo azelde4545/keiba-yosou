@@ -1,0 +1,50 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Project specific - runtime generated files
+logs/*.log
+output_analysis/*.txt
+output_analysis/*.json
+output_analysis/*.md
+
+# Database files that change at runtime
+dark_horse.db
+*.db-journal
+
+# Temporary files
+temp_clean/
+*.tmp

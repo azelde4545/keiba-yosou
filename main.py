@@ -341,8 +341,8 @@ def main():
         
         # Step 2: 馬評価（2種類）
         phase_start = time.time()
-        print("\n* [STEP 2] 6要素評価システム実行（実力評価＋期待値評価）")
-        evaluator = HorseEvaluator(config)
+        print(f"\n* [STEP 2] 6要素評価システム実行（実力評価＋期待値評価） - {mode}モード")
+        evaluator = HorseEvaluator(config, mode=mode)
         eval_dict = evaluator.evaluate_horses(race_data)
 
         ability_results = eval_dict.get('ability_results', [])
@@ -400,11 +400,12 @@ def main():
             print(f"[OK] 統合JSON: {json_path}")
         
         # 4-2: software_analysis.txt（人間向け）
+        analysis_text = None
         if generate_txt:
             analysis_text = generate_software_analysis_txt(
                 ability_results, value_results, betting_result, race_data
             )
-            
+
             txt_path = output_dir / "software_analysis.txt"
             with open(txt_path, 'w', encoding='utf-8') as f:
                 f.write(analysis_text)
@@ -453,7 +454,7 @@ def main():
                 logger.error(f"Obsidian出力エラー: {e}", exc_info=True)
         
         # コンソール出力（従来版）
-        if not args.use_v2_formatter:
+        if not args.use_v2_formatter and analysis_text:
             print("\n" + "=" * 60)
             print(analysis_text)
             print("=" * 60)

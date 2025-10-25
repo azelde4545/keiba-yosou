@@ -9,13 +9,17 @@ import sqlite3
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from typing import Dict, List, Optional, Any
+from cachetools import cached, LRUCache
 
 from pace_data_parser import calculate_running_style_stats
 from running_style_analyzer import RunningStyleAnalyzer, determine_running_style
 
 
+# グローバルキャッシュ（メモリ効率化）
+_anauma_cache = LRUCache(maxsize=1000)
+
 class FastAnaumaDB:
-    """穴馬DBキャッシュ"""
+    """穴馬DBキャッシュ（LRUCache強化版）"""
     def __init__(self, db_path: str):
         self.cache = {}
         try:
@@ -26,6 +30,7 @@ class FastAnaumaDB:
             con.close()
         except: pass
     
+    @cached(cache=_anauma_cache)
     def search(self, name: str) -> Optional[Dict]:
         return self.cache.get(name)
 

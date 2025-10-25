@@ -6,7 +6,7 @@
 """
 import os
 import sys
-import json
+import orjson
 import logging
 import argparse
 from datetime import datetime
@@ -301,10 +301,20 @@ def main():
         help='Obsidian用のMarkdown形式でも出力'
     )
     
+    parser.add_argument(
+        '--mode',
+        choices=['1min', '3min', '5min', 'full'],
+        default='full',
+        help='実行モード選択: 1min(超高速), 3min(高速), 5min(標準), full(完全版)'
+    )
+    
     args = parser.parse_args()
     race_data_file = args.json_file
+    mode = args.mode
     
-    print("* 競馬予想システム v3.0 - 実行開始")
+    # モード表示
+    mode_names = {'1min': '超高速', '3min': '高速', '5min': '標準', 'full': '完全版'}
+    print(f"* 競馬予想システム v3.0 [{mode_names.get(mode, mode)}モード] - 実行開始")
     print(f"* 実行時刻: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"* 入力ファイル: {race_data_file}")
     
@@ -348,8 +358,15 @@ def main():
         else:
             print(f"[OK] {betting_result['strategy']}を生成")
         
-        # Step 4: デュアル・アウトプット生成
-        print("\n* [STEP 4] デュアル・アウトプット生成")
+        # Step 4: モード別アウトプット生成
+        print(f"
+* [STEP 4] アウトプット生成 [{mode_names.get(mode, mode)}モード]")
+        
+        # モード別出力制御
+        generate_json = mode in ['1min', '3min', '5min', 'full']
+        generate_txt = mode in ['3min', '5min', 'full']
+        generate_v2 = (mode in ['5min', 'full']) or args.use_v2_formatter
+        generate_obs = (mode in ['5min', 'full']) or args.obsidian_output
         
         # 4-1: 統合JSON（機械向け）
         output_dir = Path("output_analysis")
@@ -364,20 +381,22 @@ def main():
             "pace_analysis": eval_dict.get('pace_analysis', {})
         }
         
-        json_path = output_dir / "unified_race_data.json"
-        with open(json_path, 'w', encoding='utf-8') as f:
-            json.dump(unified_json, f, ensure_ascii=False, indent=2)
-        print(f"[OK] 統合JSON: {json_path}")
+        if generate_json:
+            json_path = output_dir / "unified_race_data.json"
+            with open(json_path, 'wb') as f:
+                f.write(orjson.dumps(unified_json, option=orjson.OPT_INDENT_2))
+            print(f"[OK] 統合JSON: {json_path}")
         
         # 4-2: software_analysis.txt（人間向け）
-        analysis_text = generate_software_analysis_txt(
-            ability_results, value_results, betting_result, race_data
-        )
-        
-        txt_path = output_dir / "software_analysis.txt"
-        with open(txt_path, 'w', encoding='utf-8') as f:
-            f.write(analysis_text)
-        print(f"[OK] 分析レポート: {txt_path}")
+        if generate_txt:
+            analysis_text = generate_software_analysis_txt(
+                ability_results, value_results, betting_result, race_data
+            )
+            
+            txt_path = output_dir / "software_analysis.txt"
+            with open(txt_path, 'w', encoding='utf-8') as f:
+                f.write(analysis_text)
+            print(f"[OK] 分析レポート: {txt_path}")
         
         # 4-3: V2フォーマッター（オプション）
         if args.use_v2_formatter:

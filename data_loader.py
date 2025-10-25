@@ -5,7 +5,7 @@
 """
 
 import os
-import json
+import orjson
 import sqlite3
 import gc
 # import chardet  # 一時的にコメントアウト
@@ -33,8 +33,8 @@ class DataCleaner:
             return False
             
         try:
-            with open(config_path, 'r', encoding='utf-8') as f:
-                config = json.load(f)
+            with open(config_path, 'rb') as f:
+                config = orjson.loads(f.read())
             
             if 'race_info' in config:
                 old_race_name = config['race_info'].get('name', '不明')
@@ -47,8 +47,8 @@ class DataCleaner:
                     "race_time": "00:00"
                 }
                 
-                with open(config_path, 'w', encoding='utf-8') as f:
-                    json.dump(config, f, ensure_ascii=False, indent=2)
+                with open(config_path, 'wb') as f:
+                    f.write(orjson.dumps(config, option=orjson.OPT_INDENT_2))
                 
                 print("[事実] config.json更新完了")
                 return True
@@ -234,9 +234,9 @@ class SafeDataLoader:
             return None
         
         try:
-            # 一時的にutf-8固定に変更
-            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-                data = json.load(f)
+            # orjsonでバイナリ読み込み
+            with open(file_path, 'rb') as f:
+                data = orjson.loads(f.read())
             
             print(f"[SUCCESS] JSON読み込み完了: {file_path}")
             return data

@@ -106,14 +106,13 @@ class HorseEvaluator:
         # 脚質判定を実行
         horses_stats = []
         for h in horses:
-            past_4_races = h.get('past_4_races', [])
-            if past_4_races:
-                stats = calculate_running_style_stats(past_4_races)
+            recent_races = h.get('recent_races', [])
+            if recent_races:
+                stats = calculate_running_style_stats(recent_races)
                 stats['name'] = h.get('name')
                 horses_stats.append(stats)
         
         # レース展開を分析
-        print(f"[DEBUG] horses_stats count: {len(horses_stats)}, data: {horses_stats[:2]}")  # デバッグ出力
         analyzer = RunningStyleAnalyzer(top_n=2, adjustment_scale=0.10)
         pace, adjustments, meta = analyzer.analyze(horses_stats)
         

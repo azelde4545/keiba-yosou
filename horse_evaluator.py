@@ -8,6 +8,7 @@ import os
 import sqlite3
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
+from functools import lru_cache
 from typing import Dict, List, Optional, Any
 from cachetools import cached, LRUCache
 

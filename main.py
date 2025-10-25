@@ -9,12 +9,14 @@ import sys
 import orjson
 import logging
 import argparse
+import time
 from datetime import datetime
 from pathlib import Path
 from data_loader import DataLoader
 from horse_evaluator import HorseEvaluator
 from betting_strategy import BettingStrategy
 from result_formatter_v2 import ResultFormatterV2
+from obsidian_logger import ObsidianLogger
 
 # Windows環境での文字化け対策
 if sys.platform == 'win32':
@@ -311,40 +313,50 @@ def main():
     args = parser.parse_args()
     race_data_file = args.json_file
     mode = args.mode
-    
+
+    # パフォーマンス計測開始
+    start_time = time.time()
+    phase_times = {}
+
     # モード表示
     mode_names = {'1min': '超高速', '3min': '高速', '5min': '標準', 'full': '完全版'}
+    protocol_mode_map = {'1min': '1分モード', '3min': '3分モード', '5min': '5分モード', 'full': '完全モード'}
     print(f"* 競馬予想システム v3.0 [{mode_names.get(mode, mode)}モード] - 実行開始")
     print(f"* 実行時刻: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"* 入力ファイル: {race_data_file}")
-    
+
     try:
         # Step 1: データ読み込み
+        phase_start = time.time()
         print("\n* [STEP 1] データ読み込み")
         loader = DataLoader()
         data_result = loader.cleanup_and_load(race_data_file)
-        
+
         config = data_result["config"]
         race_data = data_result["race_data"]
-        
+
         race_name = race_data.get('race_info', {}).get('name', '不明')
-        print(f"[OK] {race_name} - {len(race_data.get('horses', []))}頭")
+        phase_times['data_loading'] = time.time() - phase_start
+        print(f"[OK] {race_name} - {len(race_data.get('horses', []))}頭 ({phase_times['data_loading']:.2f}秒)")
         
         # Step 2: 馬評価（2種類）
+        phase_start = time.time()
         print("\n* [STEP 2] 6要素評価システム実行（実力評価＋期待値評価）")
         evaluator = HorseEvaluator(config)
         eval_dict = evaluator.evaluate_horses(race_data)
-        
+
         ability_results = eval_dict.get('ability_results', [])
         value_results = eval_dict.get('value_results', [])
-        
+
         if not ability_results or not value_results:
             print("* 評価結果が生成されませんでした")
             return False
-        
-        print(f"[OK] {len(ability_results)}頭の評価完了（実力評価＋期待値評価）")
+
+        phase_times['evaluation'] = time.time() - phase_start
+        print(f"[OK] {len(ability_results)}頭の評価完了（実力評価＋期待値評価） ({phase_times['evaluation']:.2f}秒)")
         
         # Step 3: 購入プラン生成（両評価を使用）
+        phase_start = time.time()
         print("\n* [STEP 3] 購入プラン生成（両評価を使用）")
         strategy = BettingStrategy(config)
         eval_dict_for_betting = {
@@ -352,15 +364,15 @@ def main():
             'value_results': value_results
         }
         betting_result = strategy.generate_betting_plan(eval_dict_for_betting)
-        
+
+        phase_times['betting_plan'] = time.time() - phase_start
         if "error" in betting_result:
-            print(f"[WARNING] {betting_result['error']}")
+            print(f"[WARNING] {betting_result['error']} ({phase_times['betting_plan']:.2f}秒)")
         else:
-            print(f"[OK] {betting_result['strategy']}を生成")
+            print(f"[OK] {betting_result['strategy']}を生成 ({phase_times['betting_plan']:.2f}秒)")
         
         # Step 4: モード別アウトプット生成
-        print(f"
-* [STEP 4] アウトプット生成 [{mode_names.get(mode, mode)}モード]")
+        print(f"\n* [STEP 4] アウトプット生成 [{mode_names.get(mode, mode)}モード]")
         
         # モード別出力制御
         generate_json = mode in ['1min', '3min', '5min', 'full']
@@ -413,33 +425,55 @@ def main():
             print("\n" + v2_report)
         
         # 4-4: Obsidian用Markdown出力（オプション）
-        if args.obsidian_output:
+        if generate_obs:
+            phase_start = time.time()
             print("\n* [STEP 4-4] Obsidian用Markdown生成")
-            obsidian_path = output_dir / f"prediction_{race_name}_{datetime.now().strftime('%Y%m%d')}.md"
-            
-            # テンプレートを読み込んで埋め込み
-            template_path = BASE_DIR / "obsidian_template_race_prediction.md"
-            if template_path.exists():
-                with open(template_path, 'r', encoding='utf-8') as f:
-                    template = f.read()
-                
-                # データを埋め込み（簡易版）
-                filled_template = fill_obsidian_template(template, race_data, ability_results, value_results)
-                
-                with open(obsidian_path, 'w', encoding='utf-8') as f:
-                    f.write(filled_template)
-                print(f"[OK] Obsidianファイル: {obsidian_path}")
-            else:
-                print(f"[WARNING] テンプレートが見つかりません: {template_path}")
+
+            try:
+                # 新しいObsidianLoggerを使用
+                obs_logger = ObsidianLogger()
+
+                # 購入プランをテキスト化
+                betting_plan_text = betting_result.get('strategy', '購入プラン生成エラー')
+
+                # Obsidian記録を生成
+                obs_path = obs_logger.create_prediction_note(
+                    race_data=race_data,
+                    ability_results=ability_results,
+                    value_results=value_results,
+                    pace_analysis=eval_dict.get('pace_analysis', {}),
+                    betting_plan=betting_plan_text,
+                    protocol_mode=protocol_mode_map.get(mode, mode),
+                    processing_time=time.time() - start_time
+                )
+                phase_times['obsidian_output'] = time.time() - phase_start
+                print(f"[OK] Obsidianファイル: {obs_path} ({phase_times['obsidian_output']:.2f}秒)")
+            except Exception as e:
+                print(f"[ERROR] Obsidian出力エラー: {e}")
+                logger.error(f"Obsidian出力エラー: {e}", exc_info=True)
         
         # コンソール出力（従来版）
         if not args.use_v2_formatter:
             print("\n" + "=" * 60)
             print(analysis_text)
             print("=" * 60)
-        print(f"* 完了時刻: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+        # パフォーマンス計測結果表示
+        total_time = time.time() - start_time
+        print("\n" + "=" * 70)
+        print("【パフォーマンス計測結果】")
+        print(f"  データ読み込み: {phase_times.get('data_loading', 0):.2f}秒")
+        print(f"  馬評価処理: {phase_times.get('evaluation', 0):.2f}秒")
+        print(f"  購入プラン生成: {phase_times.get('betting_plan', 0):.2f}秒")
+        if 'obsidian_output' in phase_times:
+            print(f"  Obsidian出力: {phase_times.get('obsidian_output', 0):.2f}秒")
+        print(f"  ---")
+        print(f"  総処理時間: {total_time:.2f}秒")
+        print("=" * 70)
+
+        print(f"\n* 完了時刻: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print("* 次: human_analysis.txtを作成し、LLMに両方を提示してください")
-        
+
         return True
         
     except Exception as e:

@@ -5,14 +5,19 @@
 """
 
 import os
+import re
 import sqlite3
+import logging
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
-from typing import Dict, List, Optional, Any
+from functools import lru_cache
+from typing import Dict, List, Optional, Any, Union
 from cachetools import cached, LRUCache
 
 from pace_data_parser import calculate_running_style_stats
 from running_style_analyzer import RunningStyleAnalyzer, determine_running_style
+
+logger = logging.getLogger(__name__)
 
 
 # グローバルキャッシュ（メモリ効率化）
@@ -28,7 +33,12 @@ class FastAnaumaDB:
             for row in con.execute("SELECT * FROM dark_horses"):
                 self.cache[row['horse_name']] = dict(row)
             con.close()
-        except: pass
+        except (sqlite3.Error, IOError) as e:
+            logger.warning(f"Failed to load dark horse DB: {e}")
+            self.cache = {}
+        except Exception as e:
+            logger.error(f"Unexpected error loading dark horse DB: {e}")
+            self.cache = {}
     
     @cached(cache=_anauma_cache)
     def search(self, name: str) -> Optional[Dict]:
@@ -74,52 +84,128 @@ class HorseEvaluator:
     DARK_HORSE_SCORE_MID = 65
     DARK_HORSE_SCORE_LOW = 40
 
-    def __init__(self, config: Dict[str, Any] = None):
+    def __init__(self, config: Dict[str, Any] = None, mode: str = 'full'):
+        """
+        Args:
+            config: 設定辞書
+            mode: 実行モード ('1min', '3min', '5min', 'full')
+        """
         self.config = config or {}
+        self.mode = mode
         script_dir = os.path.dirname(os.path.abspath(__file__))
         self.anauma_db = FastAnaumaDB(os.path.join(script_dir, 'dark_horse.db'))
-        
-        # 実力評価ウェイト（本命・対抗用）- 格上挑戦減点あり
-        self.ability_weights = {
-            'past_performance': 0.25,
-            'course_fit': 0.25,
-            'track_condition': 0.10,
-            'weight_change': 0.03,
-            'interval': 0.07,
-            'odds_value': 0.18,
-            'dark_horse': 0.12,
-            'apply_class_penalty': True
-        }
-        
-        # 期待値評価ウェイト（穴馬用）- 格上挑戦減点なし
-        self.value_weights = {
-            'past_performance': 0.22,
-            'course_fit': 0.23,
-            'track_condition': 0.08,
-            'weight_change': 0.02,
-            'interval': 0.07,
-            'odds_value': 0.23,
-            'dark_horse': 0.15,
-            'apply_class_penalty': False
-        }
+
+        # モード別ウェイト設定
+        self.ability_weights = self._get_ability_weights_for_mode(mode)
+        self.value_weights = self._get_value_weights_for_mode(mode)
+
+    def _get_ability_weights_for_mode(self, mode: str) -> Dict[str, float]:
+        """モード別の実力評価ウェイトを取得"""
+        if mode == '1min':
+            # Tier 1: 最小限の特徴量（3つ）
+            return {
+                'past_performance': 0.40,
+                'course_fit': 0.35,
+                'track_condition': 0.0,
+                'weight_change': 0.0,
+                'interval': 0.0,
+                'odds_value': 0.25,
+                'dark_horse': 0.0,
+                'apply_class_penalty': False,
+                'enable_pace_analysis': False
+            }
+        elif mode == '3min':
+            # Tier 2: 標準的な特徴量（7つ）
+            return {
+                'past_performance': 0.25,
+                'course_fit': 0.25,
+                'track_condition': 0.10,
+                'weight_change': 0.03,
+                'interval': 0.07,
+                'odds_value': 0.18,
+                'dark_horse': 0.12,
+                'apply_class_penalty': True,
+                'enable_pace_analysis': False
+            }
+        else:  # '5min' or 'full'
+            # Tier 3: 全特徴量（11個以上）
+            return {
+                'past_performance': 0.25,
+                'course_fit': 0.25,
+                'track_condition': 0.10,
+                'weight_change': 0.03,
+                'interval': 0.07,
+                'odds_value': 0.18,
+                'dark_horse': 0.12,
+                'apply_class_penalty': True,
+                'enable_pace_analysis': True
+            }
+
+    def _get_value_weights_for_mode(self, mode: str) -> Dict[str, float]:
+        """モード別の期待値評価ウェイトを取得"""
+        if mode == '1min':
+            # Tier 1: 最小限の特徴量
+            return {
+                'past_performance': 0.35,
+                'course_fit': 0.30,
+                'track_condition': 0.0,
+                'weight_change': 0.0,
+                'interval': 0.0,
+                'odds_value': 0.35,
+                'dark_horse': 0.0,
+                'apply_class_penalty': False,
+                'enable_pace_analysis': False
+            }
+        elif mode == '3min':
+            # Tier 2: 標準的な特徴量
+            return {
+                'past_performance': 0.22,
+                'course_fit': 0.23,
+                'track_condition': 0.08,
+                'weight_change': 0.02,
+                'interval': 0.07,
+                'odds_value': 0.23,
+                'dark_horse': 0.15,
+                'apply_class_penalty': False,
+                'enable_pace_analysis': False
+            }
+        else:  # '5min' or 'full'
+            # Tier 3: 全特徴量
+            return {
+                'past_performance': 0.22,
+                'course_fit': 0.23,
+                'track_condition': 0.08,
+                'weight_change': 0.02,
+                'interval': 0.07,
+                'odds_value': 0.23,
+                'dark_horse': 0.15,
+                'apply_class_penalty': False,
+                'enable_pace_analysis': True
+            }
     
     def evaluate_horses(self, race_data: Dict[str, Any]) -> Dict[str, List[Dict[str, Any]]]:
         """並列処理で馬評価（実力評価と期待値評価の2回）"""
         horses = race_data.get('horses', [])
         if not horses: return {'ability_results': [], 'value_results': []}
-        
-        # 脚質判定を実行
-        horses_stats = []
-        for h in horses:
-            recent_races = h.get('recent_races', [])
-            if recent_races:
-                stats = calculate_running_style_stats(recent_races)
-                stats['name'] = h.get('name')
-                horses_stats.append(stats)
-        
-        # レース展開を分析
-        analyzer = RunningStyleAnalyzer(top_n=2, adjustment_scale=0.10)
-        pace, adjustments, meta = analyzer.analyze(horses_stats)
+
+        # 脚質展開分析（5分/fullモードのみ）
+        pace = '不明'
+        adjustments = {}
+        if self.ability_weights.get('enable_pace_analysis', False):
+            horses_stats = []
+            for h in horses:
+                recent_races = h.get('recent_races', [])
+                if recent_races:
+                    stats = calculate_running_style_stats(recent_races)
+                    stats['name'] = h.get('name')
+                    horses_stats.append(stats)
+
+            # レース展開を分析
+            analyzer = RunningStyleAnalyzer(top_n=2, adjustment_scale=0.10)
+            pace, adjustments, meta = analyzer.analyze(horses_stats)
+        else:
+            # 脚質展開分析をスキップ（1分/3分モード）
+            adjustments = {h.get('name'): 1.0 for h in horses}
         
         # 実力評価（本命・対抗用）
         with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
